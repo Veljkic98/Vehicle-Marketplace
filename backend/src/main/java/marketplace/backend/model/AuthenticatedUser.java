@@ -8,6 +8,7 @@ public class AuthenticatedUser extends User {
     private List<Offer> offers;
 
     public AuthenticatedUser() {
+        super();
     }
 
     public AuthenticatedUser(String fisrtName, String lastName, String email, String password,
