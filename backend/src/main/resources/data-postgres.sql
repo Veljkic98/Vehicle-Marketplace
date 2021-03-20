@@ -1,0 +1,1 @@
+insert into admin (id, first_name, last_name, email, password) values (nextval('person_seq'), 'John', 'Smith', 'admin@gmail.com', '123')
