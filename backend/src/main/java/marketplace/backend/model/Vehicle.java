@@ -2,33 +2,62 @@ package marketplace.backend.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Vehicle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "firstRegistration", nullable = false)
     private Date firstRegistration;
+
+    @Column(name = "kilometer", nullable = false)
     private int kilometer;
+
+    @Column(name = "power", nullable = false)
     private int power;
+
+    @Column(name = "cubicCapacity", nullable = false)
     private int cubicCapacity;
+
+    @Column(name = "numberOfDoors", nullable = false)
     private int numberOfDoors;
+
+    @Column(name = "price", nullable = false)
     private double price;
+
+    @ManyToOne
+    private Make make;
+
+    @OneToOne
     private File images;
 
     public Vehicle() {
     }
 
     public Vehicle(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, double price,
-            File images) {
+            Make make, File images) {
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
         this.price = price;
+        this.make = make;
         this.images = images;
     }
 
     public Vehicle(Long id, Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors,
-            double price, File images) {
+            Make make, double price, File images) {
         this.id = id;
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
@@ -36,6 +65,7 @@ public class Vehicle {
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
         this.price = price;
+        this.make = make;
         this.images = images;
     }
 
@@ -93,6 +123,14 @@ public class Vehicle {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Make getMake() {
+        return this.make;
+    }
+
+    public void setMake(Make make) {
+        this.make = make;
     }
 
     public File getImages() {
