@@ -2,13 +2,37 @@ package marketplace.backend.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "offers")
 public class Offer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "date", nullable = false)
     private Date date; // post date
+
+    @Column(name = "description", nullable = true)
     private String description;
+
+    @ManyToOne
     private Location location;
+    
+    @OneToOne
     private Vehicle vehicle;
+
+    @ManyToOne
+    private AuthenticatedUser authenticatedUser;
 
     public Offer() {
     }

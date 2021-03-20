@@ -2,9 +2,22 @@ package marketplace.backend.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "authenticated_user")
 public class AuthenticatedUser extends User {
 
+    /**
+     * Company name is marketplace name or users username
+     */
+    @Column(name = "company_name", nullable = true, unique = true)
     private String companyName;
+
+    @OneToMany(mappedBy = "authenticatedUser")
     private List<Offer> offers;
 
     public AuthenticatedUser() {
