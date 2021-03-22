@@ -7,7 +7,7 @@ import marketplace.backend.dto.requestDTO.AdminRequestDTO;
 import marketplace.backend.dto.responseDTO.AdminResponseDTO;
 import marketplace.backend.model.Admin;
 
-public class AdminMapper implements Mapper<Admin, AdminResponseDTO, AdminRequestDTO> {
+public class AdminMapper implements MyMapper<Admin, AdminResponseDTO, AdminRequestDTO> {
 
     @Override
     public Admin toEntity(AdminRequestDTO dto) {
