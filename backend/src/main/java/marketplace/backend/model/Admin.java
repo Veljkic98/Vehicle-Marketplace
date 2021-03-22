@@ -11,15 +11,19 @@ public class Admin extends User {
         super();
     }
 
-    public Admin(Long id, String fisrtName, String lastName, String email, String password) {
-        super(id, fisrtName, lastName, email, password);
+    public Admin(String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password);
+    }
+
+    public Admin(Long id, String firstName, String lastName, String email, String password) {
+        super(id, firstName, lastName, email, password);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", fisrtName='" + getFisrtName() + "'" +
+            ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +

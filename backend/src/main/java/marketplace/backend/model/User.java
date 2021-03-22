@@ -21,7 +21,7 @@ public abstract class User {
     private Long id;
 
     @Column(name = "first_name", nullable = false)
-    private String fisrtName;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
@@ -41,16 +41,16 @@ public abstract class User {
     public User() {
     }
 
-    public User(String fisrtName, String lastName, String email, String password) {
-        this.fisrtName = fisrtName;
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    public User(Long id, String fisrtName, String lastName, String email, String password) {
+    public User(Long id, String firstName, String lastName, String email, String password) {
         this.id = id;
-        this.fisrtName = fisrtName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
@@ -64,12 +64,12 @@ public abstract class User {
         this.id = id;
     }
 
-    public String getFisrtName() {
-        return this.fisrtName;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setFisrtName(String fisrtName) {
-        this.fisrtName = fisrtName;
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
