@@ -24,8 +24,8 @@ public class AuthenticatedUser extends User {
         super();
     }
 
-    public AuthenticatedUser(String firstName, String lastName, String email, String password,
-            String companyName, List<Offer> offers) {
+    public AuthenticatedUser(String firstName, String lastName, String email, String password, String companyName,
+            List<Offer> offers) {
         super(firstName, lastName, email, password);
         this.companyName = companyName;
         this.offers = offers;
