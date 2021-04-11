@@ -9,7 +9,7 @@ public interface MyMapper<T, U, Z> {
      * Create and return Entity from DTO.
      * 
      * @param dto is DTO Object
-     * @return Entity
+     * @return Entity.
      */
     T toEntity(Z dto);
 

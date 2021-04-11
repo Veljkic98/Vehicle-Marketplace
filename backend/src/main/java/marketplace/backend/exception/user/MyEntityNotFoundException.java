@@ -2,13 +2,13 @@ package marketplace.backend.exception.user;
 
 public class MyEntityNotFoundException extends RuntimeException {
     
-    private Long userId;
+    private Long id;
 
-    public MyEntityNotFoundException(Long userId) {
-        this.userId = userId;
+    public MyEntityNotFoundException(Long id) {
+        this.id = id;
     }
 
-    public Long getUserId() {
-        return this.userId;
+    public Long getId() {
+        return this.id;
     }
 }
