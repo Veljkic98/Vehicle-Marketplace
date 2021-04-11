@@ -1,11 +1,8 @@
 package marketplace.backend.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,18 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 import marketplace.backend.dto.requestDTO.AdminRequestDTO;
 import marketplace.backend.mapper.AdminMapper;
 import marketplace.backend.model.Admin;
-import marketplace.backend.service.AdminServiceImpl;
+import marketplace.backend.service.AdminService;
 
 @RestController
-@RequestMapping(value = "/api/admins")
+@RequestMapping(path = "/api/admins")
 public class AdminController {
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private AdminService adminService;
 
     private AdminMapper adminMapper = new AdminMapper();
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
 
         Admin admin = adminService.findById(id);
@@ -40,18 +37,19 @@ public class AdminController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@Valid @RequestBody AdminRequestDTO adminRequestDTO) {
+    public ResponseEntity<?> add(@Valid @RequestBody AdminRequestDTO dto) {
 
-        Admin admin = adminService.add(adminMapper.toEntity(adminRequestDTO));
+        Admin admin = adminService.add(adminMapper.toEntity(dto));
 
         return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AdminRequestDTO adminRequestDTO) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AdminRequestDTO dto) {
 
-        Admin admin = adminMapper.toEntity(adminRequestDTO);
+        Admin admin = adminMapper.toEntity(dto);
         admin.setId(id);
+        
         adminService.update(admin);
 
         return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.OK);

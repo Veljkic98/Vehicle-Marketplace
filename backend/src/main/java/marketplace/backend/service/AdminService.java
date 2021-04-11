@@ -1,7 +1,5 @@
 package marketplace.backend.service;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,7 @@ import marketplace.backend.model.Admin;
 import marketplace.backend.repository.AdminRepository;
 
 @Service
-public class AdminServiceImpl implements MyService<Admin> {
+public class AdminService implements MyService<Admin> {
 
     @Autowired
     private AdminRepository adminRepository;
@@ -23,33 +21,33 @@ public class AdminServiceImpl implements MyService<Admin> {
         Admin admin;
 
         if ((admin = adminRepository.findById(id).orElse(null)) == null)
-            // throw new EntityNotFoundException();
             throw new UserNotFoundException(id);
 
         return admin;
     }
 
     @Override
-    public Admin add(Admin admin) {
+    //TODO: Verovatno ce se menjati kad security bude uradjen
+    public Admin add(Admin entity) {
 
         // TODO: proveriti da li je ok da hvatam exception i u catch bloku bacam novi.
         try {
-            return adminRepository.save(admin);
+            return adminRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new EmailIntegrityViolationException(admin.getEmail());
+            throw new EmailIntegrityViolationException(entity.getEmail());
         }
     }
 
     @Override
-    public Admin update(Admin admin) {
+    public Admin update(Admin entity) {
 
-        if (adminRepository.findById(admin.getId()).orElse(null) == null)
-            throw new UserNotFoundException(admin.getId());
+        if (adminRepository.findById(entity.getId()).orElse(null) == null)
+            throw new UserNotFoundException(entity.getId());
 
         try {
-            return adminRepository.save(admin);
+            return adminRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new EmailIntegrityViolationException(admin.getEmail());
+            throw new EmailIntegrityViolationException(entity.getEmail());
         }
     }
 
