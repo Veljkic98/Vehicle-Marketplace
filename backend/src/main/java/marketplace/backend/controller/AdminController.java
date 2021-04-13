@@ -26,33 +26,33 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    private AdminMapper adminMapper = new AdminMapper();
+    private AdminMapper mapper = new AdminMapper();
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
 
         Admin admin = adminService.findById(id);
 
-        return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(admin), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody AdminRequestDTO dto) {
 
-        Admin admin = adminService.add(adminMapper.toEntity(dto));
+        Admin admin = adminService.add(mapper.toEntity(dto));
 
-        return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toDto(admin), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AdminRequestDTO dto) {
 
-        Admin admin = adminMapper.toEntity(dto);
+        Admin admin = mapper.toEntity(dto);
         admin.setId(id);
         
         adminService.update(admin);
 
-        return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDto(admin), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
