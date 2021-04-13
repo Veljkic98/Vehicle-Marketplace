@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.exception.user.EmailIntegrityViolationException;
-import marketplace.backend.exception.user.UserNotFoundException;
+import marketplace.backend.exception.user.exceptions.*;
 import marketplace.backend.model.Admin;
 import marketplace.backend.repository.AdminRepository;
 
