@@ -1,4 +1,4 @@
-package marketplace.backend.exception.global;
+package marketplace.backend.exception.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
