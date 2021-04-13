@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.exception.user.exceptions.*;
+import marketplace.backend.exception.exceptions.user.*;
 import marketplace.backend.model.AuthenticatedUser;
 import marketplace.backend.repository.AuthenticatedUserRepository;
 
