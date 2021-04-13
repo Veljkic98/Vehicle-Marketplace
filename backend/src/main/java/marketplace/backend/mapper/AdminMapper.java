@@ -24,13 +24,13 @@ public class AdminMapper implements MyMapper<Admin, AdminResponseDTO, AdminReque
     @Override
     public List<AdminResponseDTO> toDtoList(List<Admin> entityList) {
         
-        List<AdminResponseDTO> adminDTOs = new ArrayList<>();
+        List<AdminResponseDTO> responseDTOs = new ArrayList<>();
 
         for (Admin admin : entityList) {
-            adminDTOs.add(toDto(admin));
+            responseDTOs.add(toDto(admin));
         }
 
-        return adminDTOs;
+        return responseDTOs;
     }
     
 }
