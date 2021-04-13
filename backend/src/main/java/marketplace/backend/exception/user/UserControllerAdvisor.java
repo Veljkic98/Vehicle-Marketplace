@@ -1,18 +1,18 @@
-package marketplace.backend.exception;
+package marketplace.backend.exception.user;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import marketplace.backend.exception.user.EmailIntegrityViolationException;
-import marketplace.backend.exception.user.EmailOrCompanyNameIntegrityViolationException;
-import marketplace.backend.exception.user.UserNotFoundException;
-import marketplace.backend.exception.user.UserOffersConstraintViolationException;
+import marketplace.backend.exception.Error;
+import marketplace.backend.exception.user.exceptions.EmailIntegrityViolationException;
+import marketplace.backend.exception.user.exceptions.EmailOrCompanyNameIntegrityViolationException;
+import marketplace.backend.exception.user.exceptions.UserNotFoundException;
+import marketplace.backend.exception.user.exceptions.UserOffersConstraintViolationException;
 
 @ControllerAdvice
-public class ControllerAdvisor {
+public class UserControllerAdvisor {
     
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<Error> adminNotFound(UserNotFoundException e) {

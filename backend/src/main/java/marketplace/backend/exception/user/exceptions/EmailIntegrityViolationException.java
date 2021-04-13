@@ -1,4 +1,4 @@
-package marketplace.backend.exception.user;
+package marketplace.backend.exception.user.exceptions;
 
 public class EmailIntegrityViolationException extends RuntimeException {
     
