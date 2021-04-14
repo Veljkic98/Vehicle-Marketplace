@@ -13,7 +13,7 @@ import marketplace.backend.exception.exceptions.vehicleType.VehicleTypeNotFoundE
 public class VehicleTypeControllerAdvisor {
 
     @ExceptionHandler(VehicleTypeNotFoundException.class)
-    public ResponseEntity<Error> userNotFound(VehicleTypeNotFoundException e) {
+    public ResponseEntity<Error> vehicleTypeNotFound(VehicleTypeNotFoundException e) {
 
         Long id = e.getId();
 

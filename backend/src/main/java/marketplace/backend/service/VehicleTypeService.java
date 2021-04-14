@@ -61,7 +61,6 @@ public class VehicleTypeService implements MyService<VehicleType> {
         } catch (DataIntegrityViolationException e) {
             throw new ModelReferenceTypeConstraintViolationException(id);
         }
-
     }
-
+    
 }
