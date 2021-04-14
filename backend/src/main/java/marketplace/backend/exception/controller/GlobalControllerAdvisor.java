@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import marketplace.backend.exception.Error;
+import marketplace.backend.exception.exceptions.global.MyConstraintViolationException;
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.global.UniquenessViolationException;
 
@@ -24,9 +25,11 @@ public class GlobalControllerAdvisor {
     @ExceptionHandler(MyEntityNotFoundException.class)
     public ResponseEntity<Error> MyEntityNotFound(MyEntityNotFoundException e) {
 
-        String message = e.getMessage();
+        String entityName = e.getEntityName();
 
-        Error error = new Error(404, message);
+        Long id = e.getId();
+
+        Error error = new Error(404, entityName + " with id '" + id + "' not found.");
 
         return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
     }
@@ -40,5 +43,20 @@ public class GlobalControllerAdvisor {
 
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
     }
-    
+
+    @ExceptionHandler(MyConstraintViolationException.class)
+    public ResponseEntity<Error> UserOffersConstraintViolation(MyConstraintViolationException e) {
+
+        String prymary = e.getPrimaryEntity();
+
+        String foreign = e.getForeignEntity();
+
+        Long id = e.getId();
+
+        Error error = new Error(409,
+                prymary + " with id: '" + id + "' cannot be deleted because he has " + foreign.toLowerCase() + "/s.");
+
+        return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
+    }
+
 }

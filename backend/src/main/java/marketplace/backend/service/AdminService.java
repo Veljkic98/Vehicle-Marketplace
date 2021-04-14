@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.user.*;
 import marketplace.backend.model.Admin;
 import marketplace.backend.repository.AdminRepository;
@@ -20,16 +21,15 @@ public class AdminService implements MyService<Admin> {
         Admin admin;
 
         if ((admin = adminRepository.findById(id).orElse(null)) == null)
-            throw new UserNotFoundException(id);
+            throw new MyEntityNotFoundException("Admin", id);
 
         return admin;
     }
 
     @Override
-    //TODO: Verovatno ce se menjati kad security bude uradjen
+    // TODO: Verovatno ce se menjati kad security bude uradjen
     public Admin add(Admin entity) {
 
-        // TODO: proveriti da li je ok da hvatam exception i u catch bloku bacam novi.
         try {
             return adminRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
@@ -41,7 +41,7 @@ public class AdminService implements MyService<Admin> {
     public Admin update(Admin entity) {
 
         if (adminRepository.findById(entity.getId()).orElse(null) == null)
-            throw new UserNotFoundException(entity.getId());
+            throw new MyEntityNotFoundException("Admin", entity.getId());
 
         try {
             return adminRepository.save(entity);
@@ -54,7 +54,7 @@ public class AdminService implements MyService<Admin> {
     public void deleteById(Long id) {
 
         if (adminRepository.findById(id).orElse(null) == null)
-            throw new UserNotFoundException(id);
+            throw new MyEntityNotFoundException("Admin", id);
 
         adminRepository.deleteById(id);
     }

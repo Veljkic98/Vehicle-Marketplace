@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.exception.exceptions.fuelType.FuelTypeNotFoundException;
+import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.global.UniquenessViolationException;
 import marketplace.backend.model.FuelType;
 import marketplace.backend.repository.FuelTypeRepository;
@@ -21,7 +21,7 @@ public class FuelTypeService implements MyService<FuelType> {
         FuelType type;
 
         if ((type = fuelTypeRepository.findById(id).orElse(null)) == null)
-            throw new FuelTypeNotFoundException(id);
+            throw new MyEntityNotFoundException("Fuel type", id);
 
         return type;
     }
@@ -40,7 +40,7 @@ public class FuelTypeService implements MyService<FuelType> {
     public FuelType update(FuelType entity) {
 
         if (fuelTypeRepository.findById(entity.getId()).orElse(null) == null)
-            throw new FuelTypeNotFoundException(entity.getId());
+            throw new MyEntityNotFoundException("Fuel type", entity.getId());
 
         try {
             return fuelTypeRepository.save(entity);
@@ -53,7 +53,7 @@ public class FuelTypeService implements MyService<FuelType> {
     public void deleteById(Long id) {
 
         if (fuelTypeRepository.findById(id).orElse(null) == null)
-            throw new FuelTypeNotFoundException(id);
+            throw new MyEntityNotFoundException("Fuel type", id);
 
         fuelTypeRepository.deleteById(id);
     }

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.exception.exceptions.user.*;
+import marketplace.backend.exception.exceptions.global.MyConstraintViolationException;
+import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
+import marketplace.backend.exception.exceptions.user.EmailOrCompanyNameIntegrityViolationException;
 import marketplace.backend.model.AuthenticatedUser;
 import marketplace.backend.repository.AuthenticatedUserRepository;
 
@@ -20,7 +22,7 @@ public class AuthenticatedUserService implements MyService<AuthenticatedUser> {
         AuthenticatedUser user;
 
         if ((user = authenticatedUserRepository.findById(id).orElse(null)) == null)
-            throw new UserNotFoundException(id);
+            throw new MyEntityNotFoundException("Authenticated user", id);
 
         return user;
     }
@@ -39,7 +41,7 @@ public class AuthenticatedUserService implements MyService<AuthenticatedUser> {
     public AuthenticatedUser update(AuthenticatedUser entity) {
 
         if (authenticatedUserRepository.findById(entity.getId()).orElse(null) == null)
-            throw new UserNotFoundException(entity.getId());
+            throw new MyEntityNotFoundException("Authenticated user", entity.getId());
 
         try {
             return authenticatedUserRepository.save(entity);
@@ -52,12 +54,12 @@ public class AuthenticatedUserService implements MyService<AuthenticatedUser> {
     public void deleteById(Long id) {
 
         if (authenticatedUserRepository.findById(id).orElse(null) == null)
-            throw new UserNotFoundException(id);
+            throw new MyEntityNotFoundException("Authenticated user", id);
 
         try {
             authenticatedUserRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new UserOffersConstraintViolationException(id);
+            throw new MyConstraintViolationException("Authenticated user", "Offer", id);
         }
 
     }
