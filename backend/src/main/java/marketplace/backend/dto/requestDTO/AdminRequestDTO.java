@@ -5,16 +5,16 @@ import javax.validation.constraints.NotBlank;
 
 public class AdminRequestDTO {
 
-    @NotBlank(message = "First name cannot be blank")
+    @NotBlank(message = "First name cannot be blank.")
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be blank")
+    @NotBlank(message = "Last name cannot be blank.")
     private String lastName;
 
-    @Email(message = "Email must be valid email address")
+    @Email(message = "Email must be valid email address.")
     private String email;
 
-    @NotBlank(message = "Password cannot be blank")
+    @NotBlank(message = "Password cannot be blank.")
     private String password;
 
     public AdminRequestDTO() {

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 public class FuelTypeRequestDTO {
 
-    @NotBlank(message = "First name cannot be blank")
+    @NotBlank(message = "Name of fuel type cannot be blank.")
     private String name;
 
     public FuelTypeRequestDTO() {

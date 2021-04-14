@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 public class VehicleTypeRequestDTO {
 
-    @NotBlank(message = "First name cannot be blank")
+    @NotBlank(message = "Name of vehicle type cannot be blank.")
     private String name;
 
     public VehicleTypeRequestDTO() {
