@@ -42,5 +42,5 @@ public class AdminRequestDTO {
     public String getPassword() {
         return this.password;
     }
-
+    
 }

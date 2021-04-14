@@ -51,5 +51,5 @@ public class AuthenticatedUserRequestDTO {
     public String getCompanyName() {
         return this.companyName;
     }
-
+    
 }

@@ -17,4 +17,5 @@ public class FuelTypeRequestDTO {
     public String getName() {
         return this.name;
     }
+    
 }
