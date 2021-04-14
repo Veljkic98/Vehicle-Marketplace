@@ -26,7 +26,7 @@ public class VehicleTypeController {
     @Autowired
     private VehicleTypeService vehicleTypeService;
 
-    private VehicleTypeMapper mapper;
+    private VehicleTypeMapper mapper = new VehicleTypeMapper();
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

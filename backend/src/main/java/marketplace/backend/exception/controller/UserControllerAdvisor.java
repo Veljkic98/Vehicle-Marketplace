@@ -16,7 +16,7 @@ public class UserControllerAdvisor {
 
         Long userId = e.getUserId();
 
-        Error error = new Error(404, "User with id: " + userId + ", not found");
+        Error error = new Error(404, "User with id '" + userId + "' not found");
 
         return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
     }
@@ -26,7 +26,7 @@ public class UserControllerAdvisor {
 
         String email = e.getEmail();
 
-        Error error = new Error(400, "User with email: " + email + ", already exists.");
+        Error error = new Error(400, "User with email '" + email + "' already exists.");
 
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
     }
@@ -37,7 +37,7 @@ public class UserControllerAdvisor {
         String email = e.getEmail();
         String companyName = e.getCompanyName();
 
-        Error error = new Error(400, "User with email: '" + email + "', or company name (username): '" + companyName + "', already exists.");
+        Error error = new Error(400, "User with email: '" + email + "' or company name (username): '" + companyName + "' already exists.");
 
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
     }

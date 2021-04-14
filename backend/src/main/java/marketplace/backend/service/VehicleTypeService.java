@@ -1,11 +1,12 @@
 package marketplace.backend.service;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.global.UniquenessViolationException;
+import marketplace.backend.exception.exceptions.vehicleType.ModelReferenceTypeConstraintViolationException;
 import marketplace.backend.exception.exceptions.vehicleType.VehicleTypeNotFoundException;
 import marketplace.backend.model.VehicleType;
 import marketplace.backend.repository.VehicleTypeRepository;
@@ -33,7 +34,7 @@ public class VehicleTypeService implements MyService<VehicleType> {
         try {
             return vehicleTypeRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new UniquenessViolationException("Vehicle type with name: " + entity.getName() + ", already exists.");
+            throw new UniquenessViolationException("Vehicle type with name '" + entity.getName() + "' already exists.");
         }
     }
 
@@ -56,7 +57,11 @@ public class VehicleTypeService implements MyService<VehicleType> {
         if (vehicleTypeRepository.findById(id).orElse(null) == null)
             throw new VehicleTypeNotFoundException(id);
 
-        vehicleTypeRepository.deleteById(id);
+        try {
+            vehicleTypeRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new ModelReferenceTypeConstraintViolationException(id);
+        }
 
     }
 

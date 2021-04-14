@@ -48,7 +48,7 @@ public class VehicleType {
 
     @Override
     public String toString() {
-        return "{" + " name='" + getName() + "'" + "}";
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + "}";
     }
 
 }
