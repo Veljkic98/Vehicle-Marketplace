@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "model")
+@Table(name = "model", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "name", "vehicle_type_id", "fuel_type_id" }) })
 public class Model {
 
     @Id
@@ -21,7 +23,7 @@ public class Model {
 
     @ManyToOne
     private VehicleType vehicleType;
-    
+
     @ManyToOne
     private FuelType fuelType;
 

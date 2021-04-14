@@ -32,7 +32,9 @@ public class ModelService implements MyService<Model> {
         try {
             return modelRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new UniquenessViolationException("Model with name '" + entity.getName() + "' already exists.");
+            throw new UniquenessViolationException(
+                    "Model with name '" + entity.getName() + "', vehicle type id '" + entity.getVehicleType().getId()
+                            + "' and fuel type id '" + entity.getFuelType().getId() + "' already exists.");
         }
     }
 
@@ -45,7 +47,9 @@ public class ModelService implements MyService<Model> {
         try {
             return modelRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new UniquenessViolationException("Model with name: " + entity.getName() + ", already exists.");
+            throw new UniquenessViolationException(
+                    "Model with name '" + entity.getName() + "', vehicle type id '" + entity.getVehicleType().getId()
+                            + "' and fuel type id '" + entity.getFuelType().getId() + "' already exists.");
         }
     }
 

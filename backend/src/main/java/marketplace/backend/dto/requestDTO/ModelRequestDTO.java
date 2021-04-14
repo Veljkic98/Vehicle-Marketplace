@@ -1,16 +1,17 @@
 package marketplace.backend.dto.requestDTO;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ModelRequestDTO {
 
     @NotBlank(message = "Model name cannot be blank.")
     private String name;
 
-    @NotBlank(message = "Vehicle type id cannot be blank.")
+    @NotNull(message = "Vehicle type id cannot be null.")
     private Long vehicleTypeId;
 
-    @NotBlank(message = "Fuel type id cannot be blank.")
+    @NotNull(message = "Vehicle type id cannot be null.")
     private Long fuelTypeId;
 
     public ModelRequestDTO() {
