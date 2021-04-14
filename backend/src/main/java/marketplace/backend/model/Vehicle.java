@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Vehicle {
@@ -32,41 +31,30 @@ public class Vehicle {
     @Column(name = "numberOfDoors", nullable = false)
     private int numberOfDoors;
 
-    @Column(name = "price", nullable = false)
-    private double price;
-
     @ManyToOne
     private Make make;
-
-    @OneToOne
-    private File images;
 
     public Vehicle() {
     }
 
-    public Vehicle(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, double price,
-            Make make, File images) {
+    public Vehicle(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Make make) {
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.price = price;
         this.make = make;
-        this.images = images;
     }
 
     public Vehicle(Long id, Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors,
-            Make make, double price, File images) {
+            Make make) {
         this.id = id;
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.price = price;
         this.make = make;
-        this.images = images;
     }
 
     public Long getId() {
@@ -117,14 +105,6 @@ public class Vehicle {
         this.numberOfDoors = numberOfDoors;
     }
 
-    public double getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public Make getMake() {
         return this.make;
     }
@@ -133,19 +113,11 @@ public class Vehicle {
         this.make = make;
     }
 
-    public File getImages() {
-        return this.images;
-    }
-
-    public void setImages(File images) {
-        this.images = images;
-    }
-
     @Override
     public String toString() {
         return "{" + " id='" + getId() + "'" + ", firstRegistration='" + getFirstRegistration() + "'" + ", kilometer='"
                 + getKilometer() + "'" + ", power='" + getPower() + "'" + ", cubicCapacity='" + getCubicCapacity() + "'"
-                + ", numberOfDoors='" + getNumberOfDoors() + "'" + ", price='" + getPrice() + "'" + "}";
+                + ", numberOfDoors='" + getNumberOfDoors() + "'" + "}";
     }
 
 }

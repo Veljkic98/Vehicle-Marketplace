@@ -38,9 +38,9 @@ insert into make (name, model_id) values ('BMW', 2);
 insert into make (name, model_id) values ('BMW', 3);
 insert into make (name, model_id) values ('BMW', 4);
 
-insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, price, images_id, make_id) values (2000, '12-12-2020', 75000, 5, 145, 15000, 1, 1);
+insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, make_id) values (2000, '12-12-2020', 75000, 5, 145, 1);
 
 insert into location (country, city) values ('Serbia', 'Novi Sad');
 insert into location (country, city) values ('Serbia', 'Belgrade');
 
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id) values ('15-01-2021' ,'This offer is so god, dont miss the offer.', 1, 1, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'This offer is so god, dont miss the offer.', 1, 1, 1, 15000, 1);
