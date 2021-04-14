@@ -1,6 +1,6 @@
 package marketplace.backend.dto.responseDTO;
 
-public class ModelResponsDTO {
+public class ModelResponseDTO {
 
     private Long id;
 
@@ -10,7 +10,7 @@ public class ModelResponsDTO {
 
     private Long fuelTypeId;
 
-    public ModelResponsDTO(Long id, String name, Long vehicleTypeId, Long fuelTypeId) {
+    public ModelResponseDTO(Long id, String name, Long vehicleTypeId, Long fuelTypeId) {
         this.id = id;
         this.name = name;
         this.vehicleTypeId = vehicleTypeId;
