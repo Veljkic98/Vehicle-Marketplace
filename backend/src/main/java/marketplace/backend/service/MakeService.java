@@ -1,5 +1,6 @@
 package marketplace.backend.service;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,8 @@ public class MakeService implements MyService<Make> {
         try {
             return makeRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new UniquenessViolationException("Make with name '" + entity.getName() + "' already exists.");
+            throw new UniquenessViolationException("Make with name '" + entity.getName() + "' and model id '"
+                    + entity.getModel().getId() + "' already exists. Or model doesn't exists.");
         }
     }
 

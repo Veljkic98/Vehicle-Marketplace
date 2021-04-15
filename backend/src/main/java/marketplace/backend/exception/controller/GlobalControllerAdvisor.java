@@ -23,7 +23,7 @@ public class GlobalControllerAdvisor {
     }
 
     @ExceptionHandler(MyEntityNotFoundException.class)
-    public ResponseEntity<Error> MyEntityNotFound(MyEntityNotFoundException e) {
+    public ResponseEntity<Error> myEntityNotFound(MyEntityNotFoundException e) {
 
         String entityName = e.getEntityName();
 
@@ -45,7 +45,7 @@ public class GlobalControllerAdvisor {
     }
 
     @ExceptionHandler(MyConstraintViolationException.class)
-    public ResponseEntity<Error> UserOffersConstraintViolation(MyConstraintViolationException e) {
+    public ResponseEntity<Error> myConstraintViolation(MyConstraintViolationException e) {
 
         String prymary = e.getPrimaryEntity();
 
