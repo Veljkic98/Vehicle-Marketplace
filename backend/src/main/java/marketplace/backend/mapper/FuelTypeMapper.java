@@ -26,9 +26,8 @@ public class FuelTypeMapper implements MyMapper<FuelType, FuelTypeResponseDTO, F
 
         List<FuelTypeResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (FuelType vehicleType : entityList) {
+        for (FuelType vehicleType : entityList)
             responseDTOs.add(toDto(vehicleType));
-        }
 
         return responseDTOs;
     }

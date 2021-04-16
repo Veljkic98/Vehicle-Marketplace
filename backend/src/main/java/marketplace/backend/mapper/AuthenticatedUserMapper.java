@@ -29,9 +29,8 @@ public class AuthenticatedUserMapper
 
         List<AuthenticatedUserResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (AuthenticatedUser authenticatedUser : entityList) {
+        for (AuthenticatedUser authenticatedUser : entityList)
             responseDTOs.add(toDto(authenticatedUser));
-        }
 
         return responseDTOs;
     }

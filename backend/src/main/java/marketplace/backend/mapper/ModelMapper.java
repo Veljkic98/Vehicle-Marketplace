@@ -35,9 +35,8 @@ public class ModelMapper implements MyMapper<Model, ModelResponseDTO, ModelReque
 
         List<ModelResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (Model model : entityList) {
+        for (Model model : entityList)
             responseDTOs.add(toDto(model));
-        }
 
         return responseDTOs;
     }

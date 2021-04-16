@@ -30,9 +30,8 @@ public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDT
         
         List<MakeResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (Make make : entityList) {
+        for (Make make : entityList)
             responseDTOs.add(toDto(make));
-        }
 
         return responseDTOs;
     }

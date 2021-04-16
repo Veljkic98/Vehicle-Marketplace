@@ -26,9 +26,8 @@ public class VehicleTypeMapper implements MyMapper<VehicleType, VehicleTypeRespo
         
         List<VehicleTypeResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (VehicleType vehicleType : entityList) {
+        for (VehicleType vehicleType : entityList)
             responseDTOs.add(toDto(vehicleType));
-        }
 
         return responseDTOs;
     }

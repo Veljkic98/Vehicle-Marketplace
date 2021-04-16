@@ -26,9 +26,8 @@ public class AdminMapper implements MyMapper<Admin, AdminResponseDTO, AdminReque
         
         List<AdminResponseDTO> responseDTOs = new ArrayList<>();
 
-        for (Admin admin : entityList) {
+        for (Admin admin : entityList)
             responseDTOs.add(toDto(admin));
-        }
 
         return responseDTOs;
     }
