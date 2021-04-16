@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class VehilceRequestDTO {
+public class VehicleRequestDTO {
 
     @NotNull(message = "First registration date cannot be null.")
     @JsonFormat(pattern="dd-MM-yyyy")
@@ -27,10 +27,10 @@ public class VehilceRequestDTO {
     @NotNull(message = "Make id cannot be null.")
     private Long makeId;
 
-    public VehilceRequestDTO() {
+    public VehicleRequestDTO() {
     }
 
-    public VehilceRequestDTO(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Long makeId) {
+    public VehicleRequestDTO(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Long makeId) {
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
