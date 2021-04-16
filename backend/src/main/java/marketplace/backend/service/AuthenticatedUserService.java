@@ -61,6 +61,5 @@ public class AuthenticatedUserService implements MyService<AuthenticatedUser> {
         } catch (DataIntegrityViolationException e) {
             throw new MyConstraintViolationException("Authenticated user", "Offer", id);
         }
-
     }
 }
