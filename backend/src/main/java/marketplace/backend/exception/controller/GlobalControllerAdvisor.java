@@ -54,7 +54,7 @@ public class GlobalControllerAdvisor {
         Long id = e.getId();
 
         Error error = new Error(409,
-                prymary + " with id: '" + id + "' cannot be deleted because he has " + foreign.toLowerCase() + "/s.");
+                prymary + "/s with id: '" + id + "' cannot be deleted because its connected with " + foreign.toLowerCase() + "/s.");
 
         return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
     }
