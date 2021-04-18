@@ -33,7 +33,7 @@ public class LocationService implements MyService<Location> {
             return locationRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
             throw new UniquenessViolationException("Location with city '" + entity.getCity() + "' and country '"
-                    + entity.getCountry() + "' already exists. Or location doesn't exists.");
+                    + entity.getCountry() + "' already exists.");
         }
     }
 
@@ -47,7 +47,7 @@ public class LocationService implements MyService<Location> {
             return locationRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
             throw new UniquenessViolationException("Location with city '" + entity.getCity() + "' and country '"
-                    + entity.getCountry() + "' already exists. Or location doesn't exists.");
+                    + entity.getCountry() + "' already exists.");
         }
     }
 

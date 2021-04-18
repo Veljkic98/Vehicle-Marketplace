@@ -21,7 +21,6 @@ insert into vehicle_type (name) values ('Other');
 
 insert into fuel_type (name) values ('Petrol');
 insert into fuel_type (name) values ('Diesel');
-insert into fuel_type (name) values ('Electric');
 insert into fuel_type (name) values ('Ethanol');
 insert into fuel_type (name) values ('Hybrid - Petrol');
 insert into fuel_type (name) values ('Hybrid - Diesel');
