@@ -21,13 +21,8 @@ public class Admin extends User {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", password='" + getPassword() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", firstName='" + getFirstName() + "'" + ", lastName='" + getLastName()
+                + "'" + ", email='" + getEmail() + "'" + ", password='" + getPassword() + "'" + "}";
     }
-    
+
 }

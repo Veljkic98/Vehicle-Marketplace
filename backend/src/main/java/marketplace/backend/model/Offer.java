@@ -27,7 +27,7 @@ public class Offer {
 
     @ManyToOne
     private Location location;
-    
+
     @OneToOne
     private Vehicle vehicle;
 
@@ -52,7 +52,8 @@ public class Offer {
         this.images = images;
     }
 
-    public Offer(Long id, Date date, String description, Location location, Vehicle vehicle, double price, File images) {
+    public Offer(Long id, Date date, String description, Location location, Vehicle vehicle, double price,
+            File images) {
         this.id = id;
         this.date = date;
         this.description = description;
@@ -128,14 +129,9 @@ public class Offer {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", date='" + getDate() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", location='" + getLocation() + "'" +
-            ", vehicle='" + getVehicle() + "'" +
-            ", price='" + getPrice() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", date='" + getDate() + "'" + ", description='" + getDescription() + "'"
+                + ", location='" + getLocation() + "'" + ", vehicle='" + getVehicle() + "'" + ", price='" + getPrice()
+                + "'" + ", auth user='" + getAuthenticatedUser().getEmail() + "'" + "}";
     }
 
 }

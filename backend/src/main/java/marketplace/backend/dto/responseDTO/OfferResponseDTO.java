@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class OfferResponseDTO {
 
+    private Long id;
+
     private Date date;
 
     private String description;
@@ -16,13 +18,22 @@ public class OfferResponseDTO {
 
     private Long authenticatedUserId;
 
-    public OfferResponseDTO(Date date, String description, double price, Long locationId, Long vehicleId, Long authenticatedUserId) {
+    public OfferResponseDTO(Long id, Date date, String description, double price, Long locationId, Long vehicleId, Long authenticatedUserId) {
+        this.id = id;
         this.date = date;
         this.description = description;
         this.price = price;
         this.locationId = locationId;
         this.vehicleId = vehicleId;
         this.authenticatedUserId = authenticatedUserId;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDate() {

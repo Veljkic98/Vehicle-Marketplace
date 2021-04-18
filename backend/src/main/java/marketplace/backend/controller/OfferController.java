@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
 import marketplace.backend.mapper.OfferMapper;
+import marketplace.backend.model.AuthenticatedUser;
 import marketplace.backend.model.Offer;
 import marketplace.backend.service.OfferService;
 
@@ -41,6 +42,12 @@ public class OfferController {
 
         Offer offer = offerService.add(mapper.toEntity(dto));
 
+        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        AuthenticatedUser user = new AuthenticatedUser();
+        user.setId(1L);
+
+        offer.setAuthenticatedUser(user);
+
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.CREATED);
     }
 
@@ -49,6 +56,12 @@ public class OfferController {
 
         Offer offer = mapper.toEntity(dto);
         offer.setId(id);
+
+        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        AuthenticatedUser user = new AuthenticatedUser();
+        user.setId(1L);
+
+        offer.setAuthenticatedUser(user);
 
         offerService.update(offer);
 

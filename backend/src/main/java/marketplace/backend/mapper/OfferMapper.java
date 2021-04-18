@@ -26,7 +26,7 @@ public class OfferMapper implements MyMapper<Offer, OfferResponseDTO, OfferReque
     @Override
     public OfferResponseDTO toDto(Offer entity) {
 
-        return new OfferResponseDTO(entity.getDate(), entity.getDescription(), entity.getPrice(),
+        return new OfferResponseDTO(entity.getId(), entity.getDate(), entity.getDescription(), entity.getPrice(),
                 entity.getLocation().getId(), entity.getVehicle().getId(), entity.getAuthenticatedUser().getId());
     }
 
