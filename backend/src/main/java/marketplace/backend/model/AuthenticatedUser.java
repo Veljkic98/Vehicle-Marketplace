@@ -24,16 +24,16 @@ public class AuthenticatedUser extends User {
         super();
     }
 
-    public AuthenticatedUser(String fisrtName, String lastName, String email, String password,
-            String companyName, List<Offer> offers) {
-        super(fisrtName, lastName, email, password);
+    public AuthenticatedUser(String firstName, String lastName, String email, String password, String companyName,
+            List<Offer> offers) {
+        super(firstName, lastName, email, password);
         this.companyName = companyName;
         this.offers = offers;
     }
 
-    public AuthenticatedUser(Long id, String fisrtName, String lastName, String email, String password,
+    public AuthenticatedUser(Long id, String firstName, String lastName, String email, String password,
             String companyName, List<Offer> offers) {
-        super(id, fisrtName, lastName, email, password);
+        super(id, firstName, lastName, email, password);
         this.companyName = companyName;
         this.offers = offers;
     }
@@ -56,7 +56,7 @@ public class AuthenticatedUser extends User {
 
     @Override
     public String toString() {
-        return "{" + " id='" + getId() + "'" + ", fisrtName='" + getFisrtName() + "'" + ", lastName='" + getLastName()
+        return "{" + " id='" + getId() + "'" + ", firstName='" + getFirstName() + "'" + ", lastName='" + getLastName()
                 + "'" + ", email='" + getEmail() + "'" + ", password='" + getPassword() + "'" + ", companyName='"
                 + getCompanyName() + "'" + "}";
     }

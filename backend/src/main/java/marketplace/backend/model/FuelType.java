@@ -10,12 +10,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "fuel_type")
 public class FuelType {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     public FuelType() {
@@ -48,10 +48,7 @@ public class FuelType {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + "}";
     }
 
 }

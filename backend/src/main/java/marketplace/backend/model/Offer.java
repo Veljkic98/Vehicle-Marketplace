@@ -27,9 +27,15 @@ public class Offer {
 
     @ManyToOne
     private Location location;
-    
+
     @OneToOne
     private Vehicle vehicle;
+
+    @Column(name = "price", nullable = false)
+    private double price;
+
+    @OneToOne
+    private File images;
 
     @ManyToOne
     private AuthenticatedUser authenticatedUser;
@@ -37,19 +43,24 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(Date date, String description, Location location, Vehicle vehicle) {
+    public Offer(Date date, String description, Location location, Vehicle vehicle, double price, File images) {
         this.date = date;
         this.description = description;
         this.location = location;
         this.vehicle = vehicle;
+        this.price = price;
+        this.images = images;
     }
 
-    public Offer(Long id, Date date, String description, Location location, Vehicle vehicle) {
+    public Offer(Long id, Date date, String description, Location location, Vehicle vehicle, double price,
+            File images) {
         this.id = id;
         this.date = date;
         this.description = description;
         this.location = location;
         this.vehicle = vehicle;
+        this.price = price;
+        this.images = images;
     }
 
     public Long getId() {
@@ -92,9 +103,35 @@ public class Offer {
         this.vehicle = vehicle;
     }
 
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public File getImages() {
+        return this.images;
+    }
+
+    public void setImages(File images) {
+        this.images = images;
+    }
+
+    public AuthenticatedUser getAuthenticatedUser() {
+        return this.authenticatedUser;
+    }
+
+    public void setAuthenticatedUser(AuthenticatedUser authenticatedUser) {
+        this.authenticatedUser = authenticatedUser;
+    }
+
     @Override
     public String toString() {
-        return "{" + " date='" + getDate() + "'" + ", description='" + getDescription() + "'" + "}";
+        return "{" + " id='" + getId() + "'" + ", date='" + getDate() + "'" + ", description='" + getDescription() + "'"
+                + ", location='" + getLocation() + "'" + ", vehicle='" + getVehicle() + "'" + ", price='" + getPrice()
+                + "'" + ", auth user='" + getAuthenticatedUser().getEmail() + "'" + "}";
     }
 
 }
