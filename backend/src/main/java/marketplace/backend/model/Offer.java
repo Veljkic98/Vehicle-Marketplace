@@ -118,6 +118,14 @@ public class Offer {
         this.images = images;
     }
 
+    public AuthenticatedUser getAuthenticatedUser() {
+        return this.authenticatedUser;
+    }
+
+    public void setAuthenticatedUser(AuthenticatedUser authenticatedUser) {
+        this.authenticatedUser = authenticatedUser;
+    }
+
     @Override
     public String toString() {
         return "{" +
