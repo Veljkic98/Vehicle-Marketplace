@@ -3,6 +3,9 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
 import marketplace.backend.dto.responseDTO.OfferResponseDTO;
 import marketplace.backend.model.Location;
@@ -39,6 +42,15 @@ public class OfferMapper implements MyMapper<Offer, OfferResponseDTO, OfferReque
             responseDTOs.add(toDto(offer));
 
         return responseDTOs;
+    }
+
+    public Page<OfferResponseDTO> toDtoPage(Page<Offer> entityPage) {
+
+        List<OfferResponseDTO> DTOs = toDtoList(entityPage.toList());
+        
+        Page<OfferResponseDTO> pageResponse = new PageImpl<>(DTOs, entityPage.getPageable(), entityPage.getTotalElements());
+
+        return pageResponse;
     }
 
 }
