@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
-import marketplace.backend.dto.responseDTO.OfferResponseDTO;
 import marketplace.backend.mapper.OfferMapper;
 import marketplace.backend.model.AuthenticatedUser;
 import marketplace.backend.model.Offer;
@@ -41,12 +39,20 @@ public class OfferController {
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping(path = "/by-page")
     public ResponseEntity<?> findAll(Pageable pageable) {
 
         Page<Offer> offers = offerService.findAll(pageable);
 
         return new ResponseEntity<>(mapper.toDtoPage(offers) , HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/by-page/{userId}")
+    public ResponseEntity<?> findAll(Pageable pageable, @PathVariable Long userId) {
+
+        Page<Offer> offers = offerService.findAllByUser(pageable, userId);
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
     }
 
     @PostMapping

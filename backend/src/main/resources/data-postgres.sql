@@ -46,6 +46,6 @@ insert into location (country, city) values ('Serbia', 'Novi Sad');
 insert into location (country, city) values ('Serbia', 'Belgrade');
 
 insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-03-2021' ,'This offer is so god, dont miss the offer.', 1, 2, 1, 15000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com.', 2, 1, 2, 19000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com.', 2, 1, 3, 5000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com.', 1, 2, 4, 95000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com 2.', 2, 1, 2, 19000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com 3.', 2, 1, 3, 5000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com 4.', 1, 2, 4, 95000, 1);

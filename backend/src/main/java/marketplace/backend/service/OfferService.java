@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import marketplace.backend.dto.responseDTO.OfferResponseDTO;
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.model.Offer;
+import marketplace.backend.repository.AuthenticatedUserRepository;
 import marketplace.backend.repository.OfferRepository;
 
 @Service
@@ -15,6 +15,9 @@ public class OfferService implements MyService<Offer> {
 
     @Autowired
     private OfferRepository offerRepository;
+
+    @Autowired
+    private AuthenticatedUserRepository authenticatedUserRepository;
 
     @Override
     public Offer findById(Long id) {
@@ -54,6 +57,16 @@ public class OfferService implements MyService<Offer> {
     public Page<Offer> findAll(Pageable pageable) {
 
         Page<Offer> page = offerRepository.findAll(pageable);
+
+        return page;
+    }
+
+    public Page<Offer> findAllByUser(Pageable pageable, Long userId) {
+
+        if (authenticatedUserRepository.findById(userId).orElse(null) == null) 
+            throw new MyEntityNotFoundException("User", userId);
+
+        Page<Offer> page = offerRepository.findByAuthenticatedUserId(userId, pageable);
 
         return page;
     }
