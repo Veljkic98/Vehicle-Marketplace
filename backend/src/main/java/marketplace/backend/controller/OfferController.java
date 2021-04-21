@@ -3,6 +3,8 @@ package marketplace.backend.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
+import marketplace.backend.dto.responseDTO.OfferResponseDTO;
 import marketplace.backend.mapper.OfferMapper;
 import marketplace.backend.model.AuthenticatedUser;
 import marketplace.backend.model.Offer;
@@ -37,12 +41,20 @@ public class OfferController {
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<?> findAll(Pageable pageable) {
+
+        Page<Offer> offers = offerService.findAll(pageable);
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers) , HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody OfferRequestDTO dto) {
 
         Offer offer = offerService.add(mapper.toEntity(dto));
 
-        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
         user.setId(1L);
 
@@ -57,7 +69,7 @@ public class OfferController {
         Offer offer = mapper.toEntity(dto);
         offer.setId(id);
 
-        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
         user.setId(1L);
 

@@ -1,8 +1,11 @@
 package marketplace.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import marketplace.backend.dto.responseDTO.OfferResponseDTO;
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.model.Offer;
 import marketplace.backend.repository.OfferRepository;
@@ -46,6 +49,13 @@ public class OfferService implements MyService<Offer> {
             throw new MyEntityNotFoundException("Offer", id);
 
         offerRepository.deleteById(id);
+    }
+
+    public Page<Offer> findAll(Pageable pageable) {
+
+        Page<Offer> page = offerRepository.findAll(pageable);
+
+        return page;
     }
 
 }
