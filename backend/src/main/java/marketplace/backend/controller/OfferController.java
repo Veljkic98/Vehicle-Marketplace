@@ -3,6 +3,8 @@ package marketplace.backend.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
 import marketplace.backend.mapper.OfferMapper;
@@ -27,7 +31,8 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
-    private OfferMapper mapper = new OfferMapper();
+    @Autowired
+    private OfferMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
@@ -37,18 +42,46 @@ public class OfferController {
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/by-page")
+    public ResponseEntity<?> findAll(Pageable pageable) {
+
+        Page<Offer> offers = offerService.findAll(pageable);
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers) , HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/by-page/{userId}")
+    public ResponseEntity<?> findAll(Pageable pageable, @PathVariable Long userId) {
+
+        Page<Offer> offers = offerService.findAllByUser(pageable, userId);
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/by-page/my")
+    public ResponseEntity<?> findAllMy(Pageable pageable) {
+
+        // TODO: izvuci ko je ulogovan a ovo obrosati
+        AuthenticatedUser user = new AuthenticatedUser();
+        user.setId(1L);
+
+        Page<Offer> offers = offerService.findAllByUser(pageable, user.getId());
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<?> add(@Valid @RequestBody OfferRequestDTO dto) {
+    public ResponseEntity<?> add(@RequestPart("file") MultipartFile file, @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
-        Offer offer = offerService.add(mapper.toEntity(dto));
+        Offer offer = mapper.toEntity(dto);
 
-        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
         user.setId(1L);
 
         offer.setAuthenticatedUser(user);
 
-        return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toDto(offerService.add(offer, file)), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
@@ -57,7 +90,7 @@ public class OfferController {
         Offer offer = mapper.toEntity(dto);
         offer.setId(id);
 
-        //TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
+        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
         user.setId(1L);
 

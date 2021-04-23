@@ -3,10 +3,13 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import marketplace.backend.dto.requestDTO.AdminRequestDTO;
 import marketplace.backend.dto.responseDTO.AdminResponseDTO;
 import marketplace.backend.model.Admin;
 
+@Service
 public class AdminMapper implements MyMapper<Admin, AdminResponseDTO, AdminRequestDTO> {
 
     @Override

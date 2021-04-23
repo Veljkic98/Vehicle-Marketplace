@@ -3,10 +3,13 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import marketplace.backend.dto.requestDTO.LocationRequestDTO;
 import marketplace.backend.dto.responseDTO.LocationResponseDTO;
 import marketplace.backend.model.Location;
 
+@Service
 public class LocationMapper implements MyMapper<Location, LocationResponseDTO, LocationRequestDTO> {
 
     @Override

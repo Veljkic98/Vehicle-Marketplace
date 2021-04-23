@@ -26,7 +26,8 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    private AdminMapper mapper = new AdminMapper();
+    @Autowired
+    private AdminMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

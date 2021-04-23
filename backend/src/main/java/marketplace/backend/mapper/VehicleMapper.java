@@ -3,11 +3,14 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import marketplace.backend.dto.requestDTO.VehicleRequestDTO;
 import marketplace.backend.dto.responseDTO.VehicleResponseDTO;
 import marketplace.backend.model.Make;
 import marketplace.backend.model.Vehicle;
 
+@Service
 public class VehicleMapper implements MyMapper<Vehicle, VehicleResponseDTO, VehicleRequestDTO> {
 
     @Override

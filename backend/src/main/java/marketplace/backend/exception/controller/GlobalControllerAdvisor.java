@@ -1,6 +1,7 @@
 package marketplace.backend.exception.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -57,6 +58,14 @@ public class GlobalControllerAdvisor {
                 prymary + "/s with id: '" + id + "' cannot be deleted because its connected with " + foreign.toLowerCase() + "/s.");
 
         return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PropertyReferenceException.class)
+    public ResponseEntity<Error> invalidURLParam(PropertyReferenceException e) {
+
+        Error error = new Error(400, "Invalid URL parameter/s");
+
+        return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
     }
 
 }
