@@ -26,7 +26,8 @@ public class FuelTypeController {
     @Autowired
     private FuelTypeService fuelTypeService;
 
-    private FuelTypeMapper mapper = new FuelTypeMapper();
+    @Autowired
+    private FuelTypeMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

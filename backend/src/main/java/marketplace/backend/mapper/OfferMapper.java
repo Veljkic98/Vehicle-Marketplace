@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Service;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
 import marketplace.backend.dto.responseDTO.OfferResponseDTO;
@@ -12,6 +13,7 @@ import marketplace.backend.model.Location;
 import marketplace.backend.model.Offer;
 import marketplace.backend.model.Vehicle;
 
+@Service
 public class OfferMapper implements MyMapper<Offer, OfferResponseDTO, OfferRequestDTO> {
 
     @Override

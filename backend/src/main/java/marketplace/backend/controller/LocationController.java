@@ -26,7 +26,8 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
-    private LocationMapper mapper = new LocationMapper();
+    @Autowired
+    private LocationMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

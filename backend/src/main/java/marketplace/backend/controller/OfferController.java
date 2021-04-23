@@ -29,7 +29,8 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
-    private OfferMapper mapper = new OfferMapper();
+    @Autowired
+    private OfferMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

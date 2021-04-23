@@ -26,7 +26,8 @@ public class ModelController {
     @Autowired
     private ModelService modelService;
 
-    private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private ModelMapper mapper;
     
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

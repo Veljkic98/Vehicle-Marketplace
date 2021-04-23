@@ -3,10 +3,13 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import marketplace.backend.dto.requestDTO.FuelTypeRequestDTO;
 import marketplace.backend.dto.responseDTO.FuelTypeResponseDTO;
 import marketplace.backend.model.FuelType;
 
+@Service
 public class FuelTypeMapper implements MyMapper<FuelType, FuelTypeResponseDTO, FuelTypeRequestDTO> {
 
     @Override

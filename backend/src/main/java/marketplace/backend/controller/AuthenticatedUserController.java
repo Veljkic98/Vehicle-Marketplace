@@ -26,7 +26,8 @@ public class AuthenticatedUserController {
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
-    private AuthenticatedUserMapper authenticatedUserMapper = new AuthenticatedUserMapper();
+    @Autowired
+    private AuthenticatedUserMapper authenticatedUserMapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

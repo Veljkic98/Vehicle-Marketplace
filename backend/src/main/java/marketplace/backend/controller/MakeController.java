@@ -26,7 +26,8 @@ public class MakeController {
     @Autowired
     private MakeService makeService;
 
-    private MakeMapper mapper = new MakeMapper();
+    @Autowired
+    private MakeMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

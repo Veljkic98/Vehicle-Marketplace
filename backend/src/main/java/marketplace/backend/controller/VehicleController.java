@@ -19,7 +19,6 @@ import marketplace.backend.mapper.VehicleMapper;
 import marketplace.backend.model.Vehicle;
 import marketplace.backend.service.VehicleService;
 
-
 @RestController
 @RequestMapping(path = "/api/vehicles")
 public class VehicleController {
@@ -27,7 +26,8 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    private VehicleMapper mapper = new VehicleMapper();
+    @Autowired
+    private VehicleMapper mapper;
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {

@@ -3,10 +3,13 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import marketplace.backend.dto.requestDTO.AuthenticatedUserRequestDTO;
 import marketplace.backend.dto.responseDTO.AuthenticatedUserResponseDTO;
 import marketplace.backend.model.AuthenticatedUser;
 
+@Service
 public class AuthenticatedUserMapper
         implements MyMapper<AuthenticatedUser, AuthenticatedUserResponseDTO, AuthenticatedUserRequestDTO> {
 
