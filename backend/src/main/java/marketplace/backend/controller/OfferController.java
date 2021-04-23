@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import marketplace.backend.dto.requestDTO.OfferRequestDTO;
 import marketplace.backend.mapper.OfferMapper;
@@ -69,9 +71,9 @@ public class OfferController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@Valid @RequestBody OfferRequestDTO dto) {
+    public ResponseEntity<?> add(@RequestPart("file") MultipartFile file, @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
-        Offer offer = offerService.add(mapper.toEntity(dto));
+        Offer offer = offerService.add(mapper.toEntity(dto), file);
 
         // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
