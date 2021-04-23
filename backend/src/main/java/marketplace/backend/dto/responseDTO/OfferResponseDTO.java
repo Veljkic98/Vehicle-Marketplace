@@ -13,12 +13,15 @@ public class OfferResponseDTO {
     private double price;
 
     private Long locationId;
-    
+
     private Long vehicleId;
 
     private Long authenticatedUserId;
 
-    public OfferResponseDTO(Long id, Date date, String description, double price, Long locationId, Long vehicleId, Long authenticatedUserId) {
+    private String imageUri;
+
+    public OfferResponseDTO(Long id, Date date, String description, double price, Long locationId, Long vehicleId,
+            Long authenticatedUserId, String imageUri) {
         this.id = id;
         this.date = date;
         this.description = description;
@@ -26,6 +29,7 @@ public class OfferResponseDTO {
         this.locationId = locationId;
         this.vehicleId = vehicleId;
         this.authenticatedUserId = authenticatedUserId;
+        this.imageUri = imageUri;
     }
 
     public Long getId() {
@@ -83,5 +87,13 @@ public class OfferResponseDTO {
     public void setAuthenticatedUserId(Long authenticatedUserId) {
         this.authenticatedUserId = authenticatedUserId;
     }
-    
+
+    public String getImageUri() {
+        return this.imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
 }

@@ -73,7 +73,7 @@ public class OfferController {
     @PostMapping
     public ResponseEntity<?> add(@RequestPart("file") MultipartFile file, @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
-        Offer offer = offerService.add(mapper.toEntity(dto), file);
+        Offer offer = mapper.toEntity(dto);
 
         // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
         AuthenticatedUser user = new AuthenticatedUser();
@@ -81,7 +81,7 @@ public class OfferController {
 
         offer.setAuthenticatedUser(user);
 
-        return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toDto(offerService.add(offer, file)), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
