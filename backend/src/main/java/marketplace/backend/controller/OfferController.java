@@ -56,6 +56,18 @@ public class OfferController {
         return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/by-page/my")
+    public ResponseEntity<?> findAllMy(Pageable pageable) {
+
+        // TODO: izvuci ko je ulogovan a ovo obrosati
+        AuthenticatedUser user = new AuthenticatedUser();
+        user.setId(1L);
+
+        Page<Offer> offers = offerService.findAllByUser(pageable, user.getId());
+
+        return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody OfferRequestDTO dto) {
 
