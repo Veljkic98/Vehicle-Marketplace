@@ -103,4 +103,14 @@ public abstract class User implements UserDetails {
         return authorities;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", email='" + getEmail() + "'" +
+            "}";
+    }
+
 }

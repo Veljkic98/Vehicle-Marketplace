@@ -92,7 +92,7 @@ public class TokenUtils {
     }
 
     public boolean canTokenBeRefreshed(String token) {
-
+        
         return (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token));
     }
 
@@ -179,7 +179,7 @@ public class TokenUtils {
     private Boolean ignoreTokenExpiration(String token) {
 
         String audience = this.getAudienceFromToken(token);
-
+        
         return (audience.equals(AUDIENCE_TABLET) || audience.equals(AUDIENCE_MOBILE));
     }
 
@@ -192,7 +192,7 @@ public class TokenUtils {
     private Claims getAllClaimsFromToken(String token) {
 
         Claims claims;
-
+        
         try {
             claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
         } catch (Exception e) {

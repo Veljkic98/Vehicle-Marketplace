@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,7 +49,7 @@ public class OfferController {
 
         Page<Offer> offers = offerService.findAll(pageable);
 
-        return new ResponseEntity<>(mapper.toDtoPage(offers) , HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDtoPage(offers), HttpStatus.OK);
     }
 
     @GetMapping(path = "/by-page/{userId}")
@@ -59,11 +61,11 @@ public class OfferController {
     }
 
     @GetMapping(path = "/by-page/my")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> findAllMy(Pageable pageable) {
 
-        // TODO: izvuci ko je ulogovan a ovo obrosati
-        AuthenticatedUser user = new AuthenticatedUser();
-        user.setId(1L);
+        AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
 
         Page<Offer> offers = offerService.findAllByUser(pageable, user.getId());
 
@@ -71,37 +73,30 @@ public class OfferController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestPart("file") MultipartFile file, @Valid @RequestPart("dto") OfferRequestDTO dto) {
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> add(@RequestPart("file") MultipartFile file,
+            @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
-        Offer offer = mapper.toEntity(dto);
+        Offer offer = offerService.add(mapper.toEntity(dto), file);
 
-        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
-        AuthenticatedUser user = new AuthenticatedUser();
-        user.setId(1L);
-
-        offer.setAuthenticatedUser(user);
-
-        return new ResponseEntity<>(mapper.toDto(offerService.add(offer, file)), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody OfferRequestDTO dto) {
 
         Offer offer = mapper.toEntity(dto);
+
         offer.setId(id);
 
-        // TODO: Umesto ovoga prebaciti da se cita ko je ulogovan i njega postaviti.
-        AuthenticatedUser user = new AuthenticatedUser();
-        user.setId(1L);
-
-        offer.setAuthenticatedUser(user);
-
-        offerService.update(offer);
+        offer = offerService.update(offer);
 
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
         offerService.deleteById(id);

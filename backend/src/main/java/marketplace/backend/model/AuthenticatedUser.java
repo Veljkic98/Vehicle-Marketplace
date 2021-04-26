@@ -60,7 +60,7 @@ public class AuthenticatedUser extends User {
                 + "'" + ", email='" + getEmail() + "'" + ", password='" + getPassword() + "'" + ", companyName='"
                 + getCompanyName() + "'" + "}";
     }
-
+    
     @Override
     public String getUsername() {
 

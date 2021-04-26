@@ -24,19 +24,15 @@ public class OfferRequestDTO {
     @NotNull(message = "vehicle id cannot be null.")
     private Long vehicleId;
 
-    @NotNull(message = "Authenticated user id cannot be null.")
-    private Long authenticatedUserId;
-
     public OfferRequestDTO() {
     }
 
-    public OfferRequestDTO(Date date, String description, double price, Long locationId, Long vehicleId, Long authenticatedUserId) {
+    public OfferRequestDTO(Date date, String description, double price, Long locationId, Long vehicleId) {
         this.date = date;
         this.description = description;
         this.price = price;
         this.locationId = locationId;
         this.vehicleId = vehicleId;
-        this.authenticatedUserId = authenticatedUserId;
     }
 
     public Date getDate() {
@@ -57,10 +53,6 @@ public class OfferRequestDTO {
 
     public Long getVehicleId() {
         return this.vehicleId;
-    }
-
-    public Long getAuthenticatedUserId() {
-        return this.authenticatedUserId;
     }
     
 }
