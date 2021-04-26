@@ -53,22 +53,7 @@ public class OfferService implements MyService<Offer> {
     @Override
     public Offer update(Offer entity) {
 
-        AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-
-        entity.setAuthenticatedUser(user);
-
-        Offer offer;
-
-        // check if entity exists
-        if ((offer = offerRepository.findById(entity.getId()).orElse(null)) == null)
-            throw new MyEntityNotFoundException("Offer", entity.getId());
-
-        // check if offer is in possession of user
-        if (offer.getAuthenticatedUser().getId() != entity.getAuthenticatedUser().getId())
-            throw new OfferPossessionException(entity.getId());
-
-        return offerRepository.save(entity);
+        return null;
     }
 
     @Override
