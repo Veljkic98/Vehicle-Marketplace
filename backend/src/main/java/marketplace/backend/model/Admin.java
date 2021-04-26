@@ -25,4 +25,34 @@ public class Admin extends User {
                 + "'" + ", email='" + getEmail() + "'" + ", password='" + getPassword() + "'" + "}";
     }
 
+    @Override
+    public String getUsername() {
+
+        return this.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+
+        return true;
+    }
+
 }
