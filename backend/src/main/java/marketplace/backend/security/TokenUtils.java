@@ -91,10 +91,9 @@ public class TokenUtils {
         return refreshedToken;
     }
 
-    public boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
-        final Date created = this.getIssuedAtDateFromToken(token);
-        return (!(this.isCreatedBeforeLastPasswordReset(created, lastPasswordReset))
-                && (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token)));
+    public boolean canTokenBeRefreshed(String token) {
+
+        return (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token));
     }
 
     // Funkcija za validaciju JWT tokena
@@ -172,28 +171,34 @@ public class TokenUtils {
         return request.getHeader(AUTH_HEADER);
     }
 
-    private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
-        return (lastPasswordReset != null && created.before(lastPasswordReset));
-    }
-
     private Boolean isTokenExpired(String token) {
         final Date expiration = this.getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
     private Boolean ignoreTokenExpiration(String token) {
+
         String audience = this.getAudienceFromToken(token);
+
         return (audience.equals(AUDIENCE_TABLET) || audience.equals(AUDIENCE_MOBILE));
     }
 
-    // Funkcija za citanje svih podataka iz JWT tokena
+    /**
+     * Get all data from JWT.
+     * 
+     * @param token
+     * @return Claims
+     */
     private Claims getAllClaimsFromToken(String token) {
+
         Claims claims;
+
         try {
             claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
         } catch (Exception e) {
             claims = null;
         }
+
         return claims;
     }
 }
