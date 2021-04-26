@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,13 +83,14 @@ public class OfferController {
 
     @PutMapping(path = "/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody OfferRequestDTO dto) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestPart("file") MultipartFile file,
+            @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
         Offer offer = mapper.toEntity(dto);
 
         offer.setId(id);
 
-        offer = offerService.update(offer);
+        offer = offerService.update(offer, file);
 
         return new ResponseEntity<>(mapper.toDto(offer), HttpStatus.OK);
     }

@@ -2,6 +2,7 @@ package marketplace.backend.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Offer {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private File images;
 
     @ManyToOne

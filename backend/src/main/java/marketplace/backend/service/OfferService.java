@@ -23,7 +23,7 @@ public class OfferService implements MyService<Offer> {
     private OfferRepository offerRepository;
 
     @Autowired
-    private FileService fileService;
+    private FileServiceImpl fileService;
 
     @Autowired
     private AuthenticatedUserRepository authenticatedUserRepository;
@@ -119,6 +119,43 @@ public class OfferService implements MyService<Offer> {
         entity.setAuthenticatedUser(user);
 
         return offerRepository.save(entity);
+    }
+
+    public Offer update(Offer entity, MultipartFile file) {
+
+        AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        entity.setAuthenticatedUser(user);
+
+        Offer offer;
+
+        // check if entity exists
+        if ((offer = offerRepository.findById(entity.getId()).orElse(null)) == null)
+            throw new MyEntityNotFoundException("Offer", entity.getId());
+
+        // check if offer is in possession of user
+        if (offer.getAuthenticatedUser().getId() != entity.getAuthenticatedUser().getId())
+            throw new OfferPossessionException(entity.getId());
+
+        Long oldImageId;
+
+        try {
+            oldImageId = offer.getImages().getId();
+        } catch (NullPointerException e) {
+            oldImageId = null;
+        }
+
+        if (!file.isEmpty()) 
+            entity.setImages(fileService.add(file));
+
+        offer = offerRepository.save(entity);
+
+        // delete old image
+        if (oldImageId != null)
+            fileService.remove(oldImageId);
+
+        return offer;
     }
 
 }
