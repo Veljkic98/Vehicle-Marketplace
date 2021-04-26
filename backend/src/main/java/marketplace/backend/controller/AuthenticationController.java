@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,6 +35,8 @@ public class AuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserLoginRequestDTO authenticationRequest,
             HttpServletResponse response) {
 
+        System.out.println(authenticationRequest);
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
@@ -44,7 +47,8 @@ public class AuthenticationController {
         String jwt = tokenUtils.generateToken(user.getEmail()); // prijavljujemo se na sistem sa email adresom
         int expiresIn = tokenUtils.getExpiredIn();
 
-        return ResponseEntity.ok(new UserLoginResponseDTO(jwt, expiresIn));
+        // return ResponseEntity.ok(new UserLoginResponseDTO(jwt, expiresIn));
+        return new ResponseEntity<>(new UserLoginResponseDTO(jwt, expiresIn), HttpStatus.OK);
     }
 
     @PostMapping(value = "/refresh")
@@ -58,11 +62,14 @@ public class AuthenticationController {
             String refreshedToken = tokenUtils.refreshToken(token);
             int expiresIn = tokenUtils.getExpiredIn();
 
-            return ResponseEntity.ok(new UserLoginResponseDTO(refreshedToken, expiresIn));
+            // return ResponseEntity.ok(new UserLoginResponseDTO(refreshedToken,
+            // expiresIn));
+            return new ResponseEntity<>(new UserLoginResponseDTO(refreshedToken, expiresIn), HttpStatus.OK);
         } else {
             UserLoginResponseDTO userTokenState = new UserLoginResponseDTO();
 
-            return ResponseEntity.badRequest().body(userTokenState);
+            // return ResponseEntity.badRequest().body(userTokenState);
+            return new ResponseEntity<>(userTokenState, HttpStatus.BAD_REQUEST);
         }
     }
 

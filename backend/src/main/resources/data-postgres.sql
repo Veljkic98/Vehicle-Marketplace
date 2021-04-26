@@ -2,19 +2,19 @@ insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
 
 insert into authenticated_user (id, first_name, last_name, email, password, company_name) values 
-    (nextval('person_seq'), 'Dragan', 'Grsic', 'auth@gmail.com', '123', 'Fast cars');
+    (nextval('person_seq'), 'Dragan', 'Grsic', 'auth@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG', 'Fast cars');
 insert into user_authority (user_id, authority_id) values (1, 2);
 
 insert into authenticated_user (id, first_name, last_name, email, password, company_name) values 
-    (nextval('person_seq'), 'Dejan', 'Spasojevic', 'auth2@gmail.com', '123', 'Aldo');
+    (nextval('person_seq'), 'Dejan', 'Spasojevic', 'auth2@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG', 'Aldo');
 insert into user_authority (user_id, authority_id) values (2, 2);
 
 insert into admin (id, first_name, last_name, email, password) values 
-    (nextval('person_seq'), 'John', 'Smith', 'admin@gmail.com', '123');
+    (nextval('person_seq'), 'John', 'Smith', 'admin@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG');
 insert into user_authority (user_id, authority_id) values (3, 1);
 
 insert into admin (id, first_name, last_name, email, password) values 
-    (nextval('person_seq'), 'Simons', 'Balboa', 'admin2@gmail.com', '123');
+    (nextval('person_seq'), 'Simons', 'Balboa', 'admin2@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG');
 insert into user_authority (user_id, authority_id) values (4, 1);
 
 insert into files (data, name, type) values (lo_import('/Users/images/title.jpg'), 'title.jpg', 'image/jpeg');
