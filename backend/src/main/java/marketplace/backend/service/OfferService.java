@@ -94,9 +94,12 @@ public class OfferService implements MyService<Offer> {
     public Offer add(Offer entity, MultipartFile file) {
 
         File image;
-        image = fileService.add(file);
 
-        entity.setImages(image);
+        if (file.getSize() != 0) {
+            image = fileService.add(file);
+
+            entity.setImages(image);
+        }
 
         AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
@@ -131,7 +134,7 @@ public class OfferService implements MyService<Offer> {
             oldImageId = null;
         }
 
-        if (!file.isEmpty()) 
+        if (!file.isEmpty())
             entity.setImages(fileService.add(file));
 
         offer = offerRepository.save(entity);
