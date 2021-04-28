@@ -1,5 +1,11 @@
 package marketplace.backend.exception.exceptions.global;
 
+/**
+ * Exception should be thrown when trying to find
+ * entity which not exists.
+ * 
+ * @author Veljko 
+ */
 public class MyEntityNotFoundException extends RuntimeException {
 
     private String entityName;

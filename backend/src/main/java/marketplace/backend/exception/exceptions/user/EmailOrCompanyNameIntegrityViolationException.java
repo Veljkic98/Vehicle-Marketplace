@@ -1,5 +1,12 @@
 package marketplace.backend.exception.exceptions.user;
 
+/**
+ * Exception should be thrown when trying to add or 
+ * update user with email or company name whose are 
+ * taken by another user.
+ * 
+ * @author Veljko
+ */
 public class EmailOrCompanyNameIntegrityViolationException extends RuntimeException {
     
     private String email;

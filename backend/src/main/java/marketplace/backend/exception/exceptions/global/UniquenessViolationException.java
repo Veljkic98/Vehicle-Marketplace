@@ -1,5 +1,11 @@
 package marketplace.backend.exception.exceptions.global;
 
+/**
+ * Exception should be thrown when trying to
+ * add entity which disturb uniqueness of another one
+ * 
+ * @author Veljko
+ */
 public class UniquenessViolationException extends RuntimeException {
 
     private String message;

@@ -1,5 +1,11 @@
 package marketplace.backend.exception.exceptions.global;
 
+/**
+ * This custom exception should be thrown when, for example,
+ * trying to delete entity which we can not delete.
+ * 
+ * @author Veljko
+ */
 public class MyConstraintViolationException extends RuntimeException {
 
     private String primaryEntity;
