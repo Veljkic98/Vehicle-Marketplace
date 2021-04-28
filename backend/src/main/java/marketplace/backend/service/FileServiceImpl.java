@@ -39,5 +39,13 @@ public class FileServiceImpl implements FileService {
 
         return file;
     }
-    
+
+    public void remove(Long id) {
+
+        if (fileRepository.findById(id).orElse(null) == null)
+            throw new MyEntityNotFoundException("File", id);
+
+        fileRepository.deleteById(id);
+    }
+
 }

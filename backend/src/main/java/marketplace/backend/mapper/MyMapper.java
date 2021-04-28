@@ -3,6 +3,14 @@ package marketplace.backend.mapper;
 import java.util.List;
 
 
+/**
+ * Interface with basic methods for entity mappers.
+ * 
+ * @param <T> is entity
+ * @param <U> is response dto entity
+ * @param <Z> is request dto entity
+ * @author Veljko
+ */
 public interface MyMapper<T, U, Z> {
 
     /**

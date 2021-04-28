@@ -22,7 +22,7 @@ import marketplace.backend.service.AuthenticatedUserService;
 @RestController
 @RequestMapping(path = "/api/authenticated-users")
 public class AuthenticatedUserController {
-    
+
     @Autowired
     private AuthenticatedUserService authenticatedUserService;
 
@@ -31,15 +31,13 @@ public class AuthenticatedUserController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        
+
         AuthenticatedUser user = authenticatedUserService.findById(id);
 
         return new ResponseEntity<>(authenticatedUserMapper.toDto(user), HttpStatus.OK);
     }
 
     @PostMapping
-    // TODO: ovo ce se prepraviti kada se uradi security
-    // Metoda je za registraciju na sistem
     public ResponseEntity<?> add(@Valid @RequestBody AuthenticatedUserRequestDTO dto) {
 
         AuthenticatedUser user = authenticatedUserService.add(authenticatedUserMapper.toEntity(dto));

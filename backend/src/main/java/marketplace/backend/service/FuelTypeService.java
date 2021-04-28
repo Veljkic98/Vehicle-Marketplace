@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.global.UniquenessViolationException;
+import marketplace.backend.exception.exceptions.vehicleType.ModelReferenceConstraintViolationException;
 import marketplace.backend.model.FuelType;
 import marketplace.backend.repository.FuelTypeRepository;
 
@@ -55,7 +56,11 @@ public class FuelTypeService implements MyService<FuelType> {
         if (fuelTypeRepository.findById(id).orElse(null) == null)
             throw new MyEntityNotFoundException("Fuel type", id);
 
-        fuelTypeRepository.deleteById(id);
+        try {
+            fuelTypeRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new ModelReferenceConstraintViolationException(id, "Fule type");
+        }
     }
 
 }

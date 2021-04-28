@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "authenticated_user")
 public class AuthenticatedUser extends User {
 
-    /**
+    /*
      * Company name is marketplace name or users username
      */
     @Column(name = "company_name", nullable = true, unique = true)
@@ -59,6 +59,36 @@ public class AuthenticatedUser extends User {
         return "{" + " id='" + getId() + "'" + ", firstName='" + getFirstName() + "'" + ", lastName='" + getLastName()
                 + "'" + ", email='" + getEmail() + "'" + ", password='" + getPassword() + "'" + ", companyName='"
                 + getCompanyName() + "'" + "}";
+    }
+    
+    @Override
+    public String getUsername() {
+
+        return this.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+
+        return true;
     }
 
 }

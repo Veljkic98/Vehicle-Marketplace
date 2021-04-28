@@ -1,12 +1,21 @@
+insert into authority (name) values ('ROLE_ADMIN');
+insert into authority (name) values ('ROLE_USER');
+
 insert into authenticated_user (id, first_name, last_name, email, password, company_name) values 
-    (nextval('person_seq'), 'Dragan', 'Grsic', 'auth@gmail.com', '123', 'Fast cars');
+    (nextval('person_seq'), 'Dragan', 'Grsic', 'auth@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG', 'Fast cars');
+insert into user_authority (user_id, authority_id) values (1, 2);
+
 insert into authenticated_user (id, first_name, last_name, email, password, company_name) values 
-    (nextval('person_seq'), 'Dejan', 'Spasojevic', 'auth2@gmail.com', '123', 'Aldo');
+    (nextval('person_seq'), 'Dejan', 'Spasojevic', 'auth2@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG', 'Aldo');
+insert into user_authority (user_id, authority_id) values (2, 2);
 
 insert into admin (id, first_name, last_name, email, password) values 
-    (nextval('person_seq'), 'John', 'Smith', 'admin@gmail.com', '123');
+    (nextval('person_seq'), 'John', 'Smith', 'admin@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG');
+insert into user_authority (user_id, authority_id) values (3, 1);
+
 insert into admin (id, first_name, last_name, email, password) values 
-    (nextval('person_seq'), 'Simons', 'Balboa', 'admin2@gmail.com', '123');
+    (nextval('person_seq'), 'Simons', 'Balboa', 'admin2@gmail.com', '$2a$10$smy7Eo0CdCrhcjYe8lAOMeMoxqeGTHGilpNcOiAAMUQR0F.5EVmHG');
+insert into user_authority (user_id, authority_id) values (4, 1);
 
 insert into files (data, name, type) values (lo_import('/Users/images/title.jpg'), 'title.jpg', 'image/jpeg');
 
@@ -46,6 +55,6 @@ insert into location (country, city) values ('Serbia', 'Novi Sad');
 insert into location (country, city) values ('Serbia', 'Belgrade');
 
 insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-03-2021' ,'This offer is so god, dont miss the offer.', 1, 2, 1, 15000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com 2.', 2, 1, 2, 19000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com 3.', 2, 1, 3, 5000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com 4.', 1, 2, 4, 95000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com 2.', 2, 1, 2, 19000, null);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com 3.', 2, 1, 3, 5000, null);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com 4.', 1, 2, 4, 95000, null);

@@ -27,7 +27,6 @@ public class AdminService implements MyService<Admin> {
     }
 
     @Override
-    // TODO: Verovatno ce se menjati kad security bude uradjen
     public Admin add(Admin entity) {
 
         try {

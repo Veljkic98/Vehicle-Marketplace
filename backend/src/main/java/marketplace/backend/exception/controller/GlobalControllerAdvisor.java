@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -66,6 +67,14 @@ public class GlobalControllerAdvisor {
         Error error = new Error(400, "Invalid URL parameter/s");
 
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+    public ResponseEntity<Error> authenticateError(AuthenticationCredentialsNotFoundException e) {
+
+        Error error = new Error(403, "Not authorized.");
+
+        return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);
     }
 
 }
