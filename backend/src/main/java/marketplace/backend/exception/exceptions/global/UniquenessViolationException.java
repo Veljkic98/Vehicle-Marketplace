@@ -10,6 +10,11 @@ public class UniquenessViolationException extends RuntimeException {
 
     private String message;
 
+    /**
+     * Class contructor.
+     * 
+     * @param message is exception (response) message 
+     */
     public UniquenessViolationException(String message) {
         this.message = message;
     }

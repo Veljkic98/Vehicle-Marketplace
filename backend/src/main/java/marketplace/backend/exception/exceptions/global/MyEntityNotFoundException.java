@@ -12,6 +12,12 @@ public class MyEntityNotFoundException extends RuntimeException {
 
     private Long id;
 
+    /**
+     * Class constructor.
+     * 
+     * @param entityName    is name of entity. E.g User, Offer...
+     * @param id            of entity
+     */
     public MyEntityNotFoundException(String entityName, Long id) {
         this.entityName = entityName;
         this.id = id;

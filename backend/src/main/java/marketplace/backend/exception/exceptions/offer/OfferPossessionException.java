@@ -10,6 +10,11 @@ public class OfferPossessionException extends RuntimeException {
 
     private Long id;
 
+    /**
+     * Constructor class.
+     * 
+     * @param id of offer
+     */
     public OfferPossessionException(Long id) {
         this.id = id;
     }

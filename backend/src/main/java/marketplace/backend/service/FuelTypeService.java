@@ -56,8 +56,6 @@ public class FuelTypeService implements MyService<FuelType> {
         if (fuelTypeRepository.findById(id).orElse(null) == null)
             throw new MyEntityNotFoundException("Fuel type", id);
 
-        
-
         try {
             fuelTypeRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {

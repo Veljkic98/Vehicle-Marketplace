@@ -13,6 +13,12 @@ public class EmailOrCompanyNameIntegrityViolationException extends RuntimeExcept
 
     private String companyName;
 
+    /**
+     * Class constructor.
+     * 
+     * @param email         of user
+     * @param companyName   of user
+     */
     public EmailOrCompanyNameIntegrityViolationException(String email, String companyName) {
         this.email = email;
         this.companyName = companyName;

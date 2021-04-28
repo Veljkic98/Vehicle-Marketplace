@@ -14,6 +14,13 @@ public class MyConstraintViolationException extends RuntimeException {
     
     private Long id;
 
+    /**
+     * Class contructor.
+     * 
+     * @param primaryEntity primary entity name (E.g Offer)
+     * @param foreignEntity is entity name whose foreign key is ID of primary entity
+     * @param id            of primary entity
+     */
     public MyConstraintViolationException(String primaryEntity, String foreignEntity, Long id) {
         this.primaryEntity = primaryEntity;
         this.foreignEntity = foreignEntity;

@@ -17,8 +17,8 @@ public class ModelReferenceConstraintViolationException extends RuntimeException
      * 
      * First letter of type should be uppercase.
      * 
-     * @param id fuel type or vehicle type ID
-     * @param type is fuel type or vehicle type
+     * @param id    fuel type or vehicle type ID
+     * @param type  is fuel type or vehicle type
      */
     public ModelReferenceConstraintViolationException(Long id, String type) {
         this.id = id;

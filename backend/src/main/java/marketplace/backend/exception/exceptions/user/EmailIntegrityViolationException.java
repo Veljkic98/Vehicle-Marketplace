@@ -12,6 +12,11 @@ public class EmailIntegrityViolationException extends RuntimeException {
     
     private String email;
 
+    /**
+     * Class constructor.
+     * 
+     * @param email of user
+     */
     public EmailIntegrityViolationException(String email) {
         this.email = email;
     }
