@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
 import marketplace.backend.exception.exceptions.global.UniquenessViolationException;
-import marketplace.backend.exception.exceptions.vehicleType.ModelReferenceTypeConstraintViolationException;
+import marketplace.backend.exception.exceptions.vehicleType.ModelReferenceConstraintViolationException;
 import marketplace.backend.model.VehicleType;
 import marketplace.backend.repository.VehicleTypeRepository;
 
@@ -59,7 +59,7 @@ public class VehicleTypeService implements MyService<VehicleType> {
         try {
             vehicleTypeRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new ModelReferenceTypeConstraintViolationException(id);
+            throw new ModelReferenceConstraintViolationException(id, "Vehicle type");
         }
     }
 
