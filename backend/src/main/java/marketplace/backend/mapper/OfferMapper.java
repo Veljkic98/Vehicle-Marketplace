@@ -56,6 +56,12 @@ public class OfferMapper implements MyMapper<Offer, OfferResponseDTO, OfferReque
         return responseDTOs;
     }
 
+    /**
+     * Convert Page of Offer to Page of Offer response DTO.
+     * 
+     * @param entityPage    is Offer page
+     * @return              offer response page
+     */
     public Page<OfferResponseDTO> toDtoPage(Page<Offer> entityPage) {
 
         List<OfferResponseDTO> DTOs = toDtoList(entityPage.toList());
