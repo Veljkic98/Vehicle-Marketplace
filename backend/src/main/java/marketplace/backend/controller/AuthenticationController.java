@@ -45,7 +45,6 @@ public class AuthenticationController {
         String jwt = tokenUtils.generateToken(user.getEmail()); // prijavljujemo se na sistem sa email adresom
         int expiresIn = tokenUtils.getExpiredIn();
 
-        // return ResponseEntity.ok(new UserLoginResponseDTO(jwt, expiresIn));
         return new ResponseEntity<>(new UserLoginResponseDTO(jwt, expiresIn), HttpStatus.OK);
     }
 
@@ -53,20 +52,15 @@ public class AuthenticationController {
     public ResponseEntity<UserLoginResponseDTO> refreshAuthenticationToken(HttpServletRequest request) {
 
         String token = tokenUtils.getToken(request);
-        // String username = this.tokenUtils.getUsernameFromToken(token);
-        // User user = (User) this.userDetailsService.loadUserByUsername(username);
 
         if (this.tokenUtils.canTokenBeRefreshed(token)) {
             String refreshedToken = tokenUtils.refreshToken(token);
             int expiresIn = tokenUtils.getExpiredIn();
 
-            // return ResponseEntity.ok(new UserLoginResponseDTO(refreshedToken,
-            // expiresIn));
             return new ResponseEntity<>(new UserLoginResponseDTO(refreshedToken, expiresIn), HttpStatus.OK);
         } else {
             UserLoginResponseDTO userTokenState = new UserLoginResponseDTO();
 
-            // return ResponseEntity.badRequest().body(userTokenState);
             return new ResponseEntity<>(userTokenState, HttpStatus.BAD_REQUEST);
         }
     }
