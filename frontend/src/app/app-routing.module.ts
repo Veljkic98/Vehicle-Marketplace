@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './components/features/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
@@ -7,11 +8,11 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
     children: [
-      // {
-      //   path: 'login',
-      //   component: LoginComponent,
-      //   canActivate: [LoginGuard]
-      // },
+      {
+        path: 'login',
+        component: LoginComponent,
+        // canActivate: [LoginGuard]
+      },
     ]
   }
 ];
