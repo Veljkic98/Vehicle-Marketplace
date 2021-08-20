@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-sort',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortComponent implements OnInit {
 
-  constructor() { }
+  val = "asd"
+  subscription: Subscription;
+
+  constructor(
+    private data: DataService,
+  ) { }
 
   ngOnInit(): void {
+    this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  /**
+   * Saljemo poruku na drugu komponentu
+   */
+  send() {
+    this.data.changeMessage(this.val)
   }
 
 }

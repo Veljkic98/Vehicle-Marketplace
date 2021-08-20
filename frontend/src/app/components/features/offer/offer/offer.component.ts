@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-offer',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferComponent implements OnInit {
 
-  constructor() { }
+  val = ""
+  subscription: Subscription;
+
+  constructor(
+    private data: DataService,
+  ) { }
 
   ngOnInit(): void {
+    this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
