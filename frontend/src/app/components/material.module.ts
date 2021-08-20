@@ -13,9 +13,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './features/login/login.component';
+import { OffersHomeComponent } from './features/offer/offers-home/offers-home.component';
+import { OfferComponent } from './features/offer/offer/offer.component';
+import { SortComponent } from './features/offer/sort/sort.component';
 
 @NgModule({
-  declarations: [ToolbarComponent, HomePageComponent, LoginComponent], // My components goes here
+  declarations: [ToolbarComponent, HomePageComponent, LoginComponent, OffersHomeComponent, OfferComponent, SortComponent], // My components goes here
   imports: [
     CommonModule,
     RouterModule,
