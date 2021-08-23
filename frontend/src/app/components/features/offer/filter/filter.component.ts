@@ -3,11 +3,11 @@ import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-sort',
-  templateUrl: './sort.component.html',
-  styleUrls: ['./sort.component.css']
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css']
 })
-export class SortComponent implements OnInit {
+export class FilterComponent implements OnInit {
 
   val = "asd"
   subscription: Subscription;
