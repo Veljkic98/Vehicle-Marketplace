@@ -10,11 +10,12 @@
             <td>
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Make</mat-label>
-                    <mat-select>
+                    <mat-select [(value)]="make">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                        <mat-option *ngFor="let make of makes" [value]="make">{{make.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+                {{make}}
             </td>
             <td>
                 <mat-form-field appearance="outline" class="example-full-width">
@@ -26,7 +27,7 @@
                 </mat-form-field>
             </td>
             <td>
-               nesto
+                nesto
             </td>
         </tr>
         <tr>

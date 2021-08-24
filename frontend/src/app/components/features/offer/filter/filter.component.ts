@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Make } from 'src/app/model/make.model';
 import { DataService } from 'src/app/services/data.service';
+import { MakeService } from 'src/app/services/make.service';
 
 @Component({
   selector: 'app-filter',
@@ -12,6 +14,8 @@ export class FilterComponent implements OnInit {
   val = "asd"
   subscription: Subscription;
 
+  page: number = 0;
+
   states: string[] = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
     'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
@@ -22,12 +26,27 @@ export class FilterComponent implements OnInit {
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
+  makes: Make[] = [];
+  make: Make = new Make({ id: 0, name: "None" });
+
   constructor(
     private data: DataService,
+    private makeService: MakeService,
   ) { }
 
   ngOnInit(): void {
     this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
+    
+    this.loadAllMakes();
+  }
+
+  loadAllMakes() {
+    this.makeService.getAll(this.page).subscribe(
+      res => {
+        this.makes = res.content
+        console.log(this.makes)
+      }
+    )
   }
 
   ngOnDestroy() {
