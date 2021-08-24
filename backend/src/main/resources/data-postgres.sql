@@ -36,20 +36,22 @@ insert into fuel_type (name) values ('Hybrid - Diesel');
 insert into fuel_type (name) values ('Electric');
 insert into fuel_type (name) values ('Other');
 
-insert into model (name, fuel_type_id, vehicle_type_id) values ('320', 1, 3);
-insert into model (name, fuel_type_id, vehicle_type_id) values ('520', 1, 5);
-insert into model (name, fuel_type_id, vehicle_type_id) values ('318', 2, 1);
-insert into model (name, fuel_type_id, vehicle_type_id) values ('750Li', 2, 3);
+insert into make (name) values ('BMW');
 
-insert into make (name, model_id) values ('BMW', 1);
-insert into make (name, model_id) values ('BMW', 2);
-insert into make (name, model_id) values ('BMW', 3);
-insert into make (name, model_id) values ('BMW', 4);
+insert into model (name, make_id) values ('320', 1);
+insert into model (name, make_id) values ('520', 1);
+insert into model (name, make_id) values ('330', 1);
+insert into model (name, make_id) values ('750Li', 1);
 
-insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, make_id) values (2000, '12-12-2017', 50000, 5, 145, 1);
-insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, make_id) values (2000, '12-12-2016', 45000, 5, 145, 2);
-insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, make_id) values (3000, '12-12-2005', 185000, 5, 286, 3);
-insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, make_id) values (4000, '12-12-2020', 2000, 5, 585, 4);
+-- insert into make (name, model_id) values ('BMW', 1);
+-- insert into make (name, model_id) values ('BMW', 2);
+-- insert into make (name, model_id) values ('BMW', 3);
+-- insert into make (name, model_id) values ('BMW', 4);
+
+insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, model_id, fuel_type_id, vehicle_type_id) values (2000, '12-12-2017', 50000, 5, 145, 1, 1, 3);
+insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, model_id, fuel_type_id, vehicle_type_id) values (2000, '12-12-2016', 45000, 5, 145, 2, 1, 5);
+insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, model_id, fuel_type_id, vehicle_type_id) values (3000, '12-12-2005', 185000, 5, 286, 3, 2, 1);
+insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_doors, power, model_id, fuel_type_id, vehicle_type_id) values (4000, '12-12-2020', 2000, 5, 585, 4, 2, 3);
 
 insert into location (country, city) values ('Serbia', 'Novi Sad');
 insert into location (country, city) values ('Serbia', 'Belgrade');

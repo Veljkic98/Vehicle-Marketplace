@@ -142,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Veljko\",\r\n    \"lastName\": \"Plecas\",\r\n    \"email\": \"veljans@gmail\",\r\n    \"password\": \"123456\",\r\n    \"companyName\": \"Fast cars\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Veljko\",\r\n    \"lastName\": \"Plecas\",\r\n    \"email\": \"auth3s@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"companyName\": \"Autokomercs\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -223,10 +223,20 @@
 				{
 					"name": "GET",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYyMTY5OTU0NiwiZXhwIjoxNjIxODc5NTQ2LCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjozfQ.QnZ7be3TSQnAQ3OUlIZzPzlUoldqfS_PnKwAD6eGyfHrtQdkbvPihKSuiYDlmWnJAQxpqK9iylVQhR7PWeqbMQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/vehicle-types/9",
+							"raw": "http://localhost:8080/api/vehicle-types/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,7 +245,7 @@
 							"path": [
 								"api",
 								"vehicle-types",
-								"9"
+								"5"
 							]
 						}
 					},
@@ -332,7 +342,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/fuel-types/9",
+							"raw": "http://localhost:8080/api/fuel-types/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -341,7 +351,7 @@
 							"path": [
 								"api",
 								"fuel-types",
-								"9"
+								"5"
 							]
 						}
 					},
@@ -438,7 +448,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/models/3",
+							"raw": "http://localhost:8080/api/models/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -447,7 +457,7 @@
 							"path": [
 								"api",
 								"models",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -460,7 +470,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Astra\",\r\n    \"vehicleTypeId\": 2,\r\n    \"fuelTypeId\": 2\r\n}",
+							"raw": "{\r\n    \"name\": \"Octavia\",\r\n    \"vehicleTypeId\": 2,\r\n    \"fuelTypeId\": 2,\r\n    \"makeId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -477,36 +487,6 @@
 							"path": [
 								"api",
 								"models"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Astraa\",\r\n    \"vehicleTypeId\": 2,\r\n    \"fuelTypeId\": 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/models/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"models",
-								"2"
 							]
 						}
 					},
@@ -532,6 +512,45 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET ALL BY MAKE ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/models/by-page/1?page=0&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"models",
+								"by-page",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -544,7 +563,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/makes/3",
+							"raw": "http://localhost:8080/api/makes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -553,7 +572,7 @@
 							"path": [
 								"api",
 								"makes",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -566,7 +585,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"BMW\",\r\n    \"modelId\": 5\r\n}",
+							"raw": "{\r\n    \"name\": \"Skoda\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -583,36 +602,6 @@
 							"path": [
 								"api",
 								"makes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Merc\",\r\n    \"modelId\": 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/makes/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"makes",
-								"1"
 							]
 						}
 					},
@@ -650,7 +639,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/vehicles/3",
+							"raw": "http://localhost:8080/api/vehicles/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -659,7 +648,7 @@
 							"path": [
 								"api",
 								"vehicles",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -672,7 +661,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"BMW\",\r\n    \"modelId\": 5\r\n}",
+							"raw": "{\r\n    \"firstRegistration\": \"25-05-2005\",\r\n    \"kilometer\": 185000,\r\n    \"power\": 515,\r\n    \"cubicCapacity\": 4000,\r\n    \"numberOfDoors\": 3,\r\n    \"modelId\": 4,\r\n    \"vehicleTypeId\": 1,\r\n    \"fuelTypeId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -701,7 +690,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Merc\",\r\n    \"modelId\": 2\r\n}",
+							"raw": "{\r\n    \"firstRegistration\": \"25-05-2005\",\r\n    \"kilometer\": 185000,\r\n    \"power\": 515,\r\n    \"cubicCapacity\": 4001,\r\n    \"numberOfDoors\": 3,\r\n    \"modelId\": 4,\r\n    \"vehicleTypeId\": 1,\r\n    \"fuelTypeId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -709,7 +698,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/vehicles/1",
+							"raw": "http://localhost:8080/api/vehicles/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -718,7 +707,7 @@
 							"path": [
 								"api",
 								"vehicles",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -880,16 +869,33 @@
 				{
 					"name": "POST",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImF1dGhAZ21haWwuY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjE5NDQ4ODkxLCJleHAiOjE2MTk2Mjg4OTEsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MX0.Y81VfRNl9S4Wm__-WaiPLjpNoKdHRaVssRoaYnBC2JPds-2uEUtxGxh8Ndhkit4s4PpfGTK1MCxIrLY8DTeSZQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"country\": \"Serbia\",\r\n    \"city\": \"Nis\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Veljko/Desktop/R8.png"
+								},
+								{
+									"key": "dto",
+									"value": "{\n    \"date\": \"2021-01-14T23:00:00.000+00:00\",\n    \"description\": \"This offer is so god, donasdadst miss the offer.\",\n    \"price\": 45233.0,\n    \"locationId\": 1,\n    \"vehicleId\": 1\n}",
+									"contentType": "application/json",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/offers",
@@ -907,21 +913,38 @@
 					"response": []
 				},
 				{
-					"name": "PUT",
+					"name": "PUT WITH IMAGE",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImF1dGhAZ21haWwuY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjE5NDQ4ODkxLCJleHAiOjE2MTk2Mjg4OTEsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MX0.Y81VfRNl9S4Wm__-WaiPLjpNoKdHRaVssRoaYnBC2JPds-2uEUtxGxh8Ndhkit4s4PpfGTK1MCxIrLY8DTeSZQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2021-01-14T23:00:00.000+00:00\",\r\n    \"description\": \"This offer is so god, donasdadst miss the offer.\",\r\n    \"price\": 15000.0,\r\n    \"locationId\": 1,\r\n    \"vehicleId\": 1,\r\n    \"authenticatedUserId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "dto",
+									"value": "{\n    \"date\": \"2021-01-14T23:00:00.000+00:00\",\n    \"description\": \"This offer is so god, donasdadst miss the offer.\",\n    \"price\": 45233.0,\n    \"locationId\": 1,\n    \"vehicleId\": 1\n}",
+									"contentType": "application/json",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/offers/2",
+							"raw": "http://localhost:8080/api/offers/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -930,7 +953,47 @@
 							"path": [
 								"api",
 								"offers",
-								"2"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImF1dGhAZ21haWwuY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjE5NDQ4ODkxLCJleHAiOjE2MTk2Mjg4OTEsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MX0.Y81VfRNl9S4Wm__-WaiPLjpNoKdHRaVssRoaYnBC2JPds-2uEUtxGxh8Ndhkit4s4PpfGTK1MCxIrLY8DTeSZQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2021-01-14T23:00:00.000+00:00\",\r\n    \"description\": \"This offer is so god, donasdadst miss the offer.\",\r\n    \"price\": 123456.0,\r\n    \"locationId\": 1,\r\n    \"vehicleId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/offers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offers",
+								"1"
 							]
 						}
 					},
@@ -939,10 +1002,20 @@
 				{
 					"name": "DELETE",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImF1dGhAZ21haWwuY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjE5NDQ4ODkxLCJleHAiOjE2MTk2Mjg4OTEsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MX0.Y81VfRNl9S4Wm__-WaiPLjpNoKdHRaVssRoaYnBC2JPds-2uEUtxGxh8Ndhkit4s4PpfGTK1MCxIrLY8DTeSZQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/offers/4",
+							"raw": "http://localhost:8080/api/offers/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -951,7 +1024,199 @@
 							"path": [
 								"api",
 								"offers",
-								"4"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYxOTQ0Nzc5MiwiZXhwIjoxNjE5NjI3NzkyLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjozfQ.zQd5iT1AExy0AGkzVPFn2te0LpHbm9zeQNlmsFdPkdsMvKFYjpam1Uyep_4h0vISWsBPpu5JN0qnkBPvpDcRsg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offers/by-page?sort=date,DESC&page=0&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offers",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "date,DESC"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL BY USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offers/by-page/1?sort=price,ASC&page=0&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offers",
+								"by-page",
+								"1"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "price,ASC"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL MY",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImF1dGhAZ21haWwuY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjE5NDQ4ODkxLCJleHAiOjE2MTk2Mjg4OTEsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MX0.Y81VfRNl9S4Wm__-WaiPLjpNoKdHRaVssRoaYnBC2JPds-2uEUtxGxh8Ndhkit4s4PpfGTK1MCxIrLY8DTeSZQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offers/by-page/my?sort=date,DESC&page=0&size=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offers",
+								"by-page",
+								"my"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "date,DESC"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "LOGIN USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"auth@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
 							]
 						}
 					},

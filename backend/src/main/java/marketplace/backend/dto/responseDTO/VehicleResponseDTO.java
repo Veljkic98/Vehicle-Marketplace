@@ -5,7 +5,7 @@ import java.util.Date;
 public class VehicleResponseDTO {
 
     private Long id;
-    
+
     private Date firstRegistration;
 
     private int kilometer;
@@ -16,16 +16,23 @@ public class VehicleResponseDTO {
 
     private int numberOfDoors;
 
-    private Long makeId;
+    private Long modelId;
 
-    public VehicleResponseDTO(Long id, Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Long makeId) {
+    private Long vehicleTypeId;
+
+    private Long fuelTypeId;
+
+    public VehicleResponseDTO(Long id, Date firstRegistration, int kilometer, int power, int cubicCapacity,
+            int numberOfDoors, Long modelId, Long vehicleTypeId, Long fuelTypeId) {
         this.id = id;
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.makeId = makeId;
+        this.modelId = modelId;
+        this.vehicleTypeId = vehicleTypeId;
+        this.fuelTypeId = fuelTypeId;
     }
 
     public Long getId() {
@@ -76,12 +83,28 @@ public class VehicleResponseDTO {
         this.numberOfDoors = numberOfDoors;
     }
 
-    public Long getMakeId() {
-        return this.makeId;
+    public Long getModelId() {
+        return this.modelId;
     }
 
-    public void setMakeId(Long makeId) {
-        this.makeId = makeId;
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
     }
-    
+
+    public Long getVehicleTypeId() {
+        return this.vehicleTypeId;
+    }
+
+    public void setVehicleTypeId(Long vehicleTypeId) {
+        this.vehicleTypeId = vehicleTypeId;
+    }
+
+    public Long getFuelTypeId() {
+        return this.fuelTypeId;
+    }
+
+    public void setFuelTypeId(Long fuelTypeId) {
+        this.fuelTypeId = fuelTypeId;
+    }
+
 }

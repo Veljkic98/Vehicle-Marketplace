@@ -24,19 +24,27 @@ public class VehicleRequestDTO {
     @NotNull(message = "Number of doors cannot be null.")
     private int numberOfDoors;
 
-    @NotNull(message = "Make id cannot be null.")
-    private Long makeId;
+    @NotNull(message = "Model id cannot be null.")
+    private Long modelId;
+
+    @NotNull(message = "Vehicle type id cannot be null.")
+    private Long vehicleTypeId;
+
+    @NotNull(message = "Vehicle fuel type id cannot be null.")
+    private Long fuelTypeId;
 
     public VehicleRequestDTO() {
     }
 
-    public VehicleRequestDTO(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Long makeId) {
+    public VehicleRequestDTO(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Long modelId, Long vehicleTypeId, Long fuelTypeId) {
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.makeId = makeId;
+        this.modelId = modelId;
+        this.vehicleTypeId = vehicleTypeId;
+        this.fuelTypeId = fuelTypeId;
     }
 
     public Date getFirstRegistration() {
@@ -59,8 +67,16 @@ public class VehicleRequestDTO {
         return this.numberOfDoors;
     }
 
-    public Long getMakeId() {
-        return this.makeId;
+    public Long getModelId() {
+        return this.modelId;
     }
 
+    public Long getVehicleTypeId() {
+        return this.vehicleTypeId;
+    }
+
+    public Long getFuelTypeId() {
+        return this.fuelTypeId;
+    }
+    
 }

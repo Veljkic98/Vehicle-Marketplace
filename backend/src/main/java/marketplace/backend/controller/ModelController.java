@@ -3,13 +3,14 @@ package marketplace.backend.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,14 @@ public class ModelController {
         return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/by-page/{makeId}")
+    public ResponseEntity<?> getAllByMakeId(Pageable pageable, @PathVariable Long makeId) {
+
+        Page<Model> models = modelService.findAllByMakeId(pageable, makeId);
+
+        return new ResponseEntity<>(mapper.toDtoPage(models), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody ModelRequestDTO dto) {
 
@@ -45,16 +54,16 @@ public class ModelController {
         return new ResponseEntity<>(mapper.toDto(model), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ModelRequestDTO dto) {
+    // @PutMapping(path = "/{id}")
+    // public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ModelRequestDTO dto) {
 
-        Model model = mapper.toEntity(dto);
-        model.setId(id);
+    //     Model model = mapper.toEntity(dto);
+    //     model.setId(id);
         
-        modelService.update(model);
+    //     modelService.update(model);
 
-        return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
-    }
+    //     return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
+    // }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {

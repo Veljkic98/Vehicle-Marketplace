@@ -32,8 +32,8 @@ public class MakeService implements MyService<Make> {
         try {
             return makeRepository.save(entity);
         } catch (DataIntegrityViolationException e) {
-            throw new UniquenessViolationException("Make with name '" + entity.getName() + "' and model id '"
-                    + entity.getModel().getId() + "' already exists. Or model doesn't exists.");
+            throw new UniquenessViolationException(
+                    "Make with name '" + entity.getName() + "' already exists.");
         }
     }
 

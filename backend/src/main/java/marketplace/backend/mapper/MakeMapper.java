@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import marketplace.backend.dto.requestDTO.MakeRequestDTO;
 import marketplace.backend.dto.responseDTO.MakeResponseDTO;
 import marketplace.backend.model.Make;
-import marketplace.backend.model.Model;
 
 @Service
 public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDTO> {
@@ -16,16 +15,13 @@ public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDT
     @Override
     public Make toEntity(MakeRequestDTO dto) {
         
-        Model model = new Model();
-        model.setId(dto.getModelId());
-
-        return new Make(dto.getName(), model);
+        return new Make(dto.getName());
     }
 
     @Override
     public MakeResponseDTO toDto(Make entity) {
         
-        return new MakeResponseDTO(entity.getId(), entity.getName(), entity.getModel().getId());
+        return new MakeResponseDTO(entity.getId(), entity.getName());
     }
 
     @Override
