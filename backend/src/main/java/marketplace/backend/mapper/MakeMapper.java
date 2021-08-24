@@ -3,6 +3,8 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import marketplace.backend.dto.requestDTO.MakeRequestDTO;
@@ -33,6 +35,22 @@ public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDT
             responseDTOs.add(toDto(make));
 
         return responseDTOs;
+    }
+
+    /**
+     * Convert Page of Make to Page of Make Response DTO.
+     * 
+     * @param entityPage is Make page
+     * @return Make response page
+     */
+    public Object toDtoPage(Page<Make> entityPage) {
+        
+        List<MakeResponseDTO> DTOs = toDtoList(entityPage.toList());
+
+        Page<MakeResponseDTO> pageResponse = new PageImpl<>(DTOs, entityPage.getPageable(),
+                entityPage.getTotalElements());
+
+        return pageResponse;
     }
     
 }
