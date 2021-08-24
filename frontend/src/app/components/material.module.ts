@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -25,13 +26,13 @@ import { FilterComponent } from './features/offer/filter/filter.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule, 
-    MatFormFieldModule, 
+    MatCardModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
-    
+    MatSelectModule,
   ],
   providers: [
   ],

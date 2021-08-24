@@ -1,8 +1,39 @@
-<p>sort works!</p>
-<mat-label>neki input</mat-label>
-<input matInput [(ngModel)]="val">
-<button (click)="send()">send</button>
+<div class="box">
+    <p>sort works!</p>
+    <mat-label>neki input</mat-label>
+    <input matInput [(ngModel)]="val">
+    <button (click)="send()">send</button>
+    <h4>mat-select</h4>
 
-<div>
-    
+    <table>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Make</mat-label>
+                    <mat-select>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Model</mat-label>
+                    <mat-select>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+               nesto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                nesto
+            </td>
+        </tr>
+
+    </table>
 </div>
