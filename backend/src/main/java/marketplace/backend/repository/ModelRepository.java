@@ -13,5 +13,5 @@ import marketplace.backend.model.Model;
 public interface ModelRepository extends JpaRepository<Model, Long> {
     
     @Transactional
-    List<Model> findByMakeId(Long makeId);
+    List<Model> findAllByMakeId(Long makeId);
 }

@@ -72,9 +72,9 @@ public class ModelService implements MyService<Model> {
         if (makeRepository.findById(makeId).orElse(null) == null)
             throw new MyEntityNotFoundException("Make", makeId);
 
-        List<Model> page = modelRepository.findByMakeId(makeId);
+        List<Model> models = modelRepository.findAllByMakeId(makeId);
 
-        return page;
+        return models;
     }
 
 }
