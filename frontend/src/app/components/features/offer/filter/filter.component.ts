@@ -28,11 +28,22 @@ export class FilterComponent implements OnInit {
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
+  regs: string[] = [
+    '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011',
+    '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'
+  ]
+
+  firstRegFrom: string = "1886";
+  firstRegTo: string = String(Number(this.regs[this.regs.length - 1]) + 1);
+
   makes: Make[] = [];
   make: Make = new Make({ id: 0, name: "None" });
 
   models: Model[] = [];
-  model: Model = new Model({id: 0, name: 'None', makeId: 0})
+  model: Model = new Model({ id: 0, name: 'None', makeId: 0 })
+
+  priceFrom: number;
+  priceTo: number;
 
   constructor(
     private data: DataService,
@@ -41,9 +52,15 @@ export class FilterComponent implements OnInit {
 
   ) { }
 
+  help() {
+    console.log(this.firstRegFrom)
+    console.log(this.firstRegTo)
+  }
+
   ngOnInit(): void {
     this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
-    
+
+    this.help()
     this.loadAllMakes();
   }
 

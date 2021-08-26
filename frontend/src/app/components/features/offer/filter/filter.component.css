@@ -9,7 +9,7 @@
 
     min-height: 200px;
     min-width: 780px;
-    width: 50vw;
+    width: 70vw;
     margin: 30px auto;
     margin-bottom: 100px;
     background: white;
@@ -19,8 +19,8 @@
 }
 
 td {
-    padding-right: 1.5em;
-    padding-left: 1.5em;
+    padding-right: 1em;
+    padding-left: 1em;
 
     /* width: 300px; */
     /* border: 5px solid green; */

@@ -4,7 +4,7 @@
     <input matInput [(ngModel)]="val">
     <button (click)="send()">send</button>
     <h4>mat-select</h4>
-
+    
     <table>
         <tr>
             <td>
@@ -12,7 +12,8 @@
                     <mat-label>Make</mat-label>
                     <mat-select [(value)]="make">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let make of makes" [value]="make" (click)="loadModels()">{{make.name}}</mat-option>
+                        <mat-option *ngFor="let make of makes" [value]="make" (click)="loadModels()">{{make.name}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
             </td>
@@ -26,12 +27,34 @@
                 </mat-form-field>
             </td>
             <td>
-                nesto
+                <mat-form-field appearance="outline">
+                    <mat-label>€ Price from</mat-label>
+                    <input matInput type="number" [(ngModel)]="priceFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>€ Price from</mat-label>
+                    <input matInput type="number" [(ngModel)]="priceTo">
+                </mat-form-field>
             </td>
         </tr>
         <tr>
             <td>
-                nesto
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>1st registration from</mat-label>
+                    <mat-select [(value)]="firstRegFrom">
+                        <mat-option *ngFor="let regFrom of regs" [value]="regFrom" (click)="help()">{{regFrom}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>1st registration to</mat-label>
+                    <mat-select [(value)]="firstRegTo">
+                        <mat-option *ngFor="let regTo of regs" [value]="regTo" (click)="help()">{{regTo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </td>
         </tr>
 
