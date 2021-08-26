@@ -330,6 +330,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcHJpbmctc2VjdXJpdHktZXhhbXBsZSIsInN1YiI6ImFkbWluQGdtYWlsLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYyMTY5OTU0NiwiZXhwIjoxNjIxODc5NTQ2LCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjozfQ.QnZ7be3TSQnAQ3OUlIZzPzlUoldqfS_PnKwAD6eGyfHrtQdkbvPihKSuiYDlmWnJAQxpqK9iylVQhR7PWeqbMQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehicle-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vehicle-types"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -470,7 +500,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Octavia\",\r\n    \"vehicleTypeId\": 2,\r\n    \"fuelTypeId\": 2,\r\n    \"makeId\": 2\r\n}",
+							"raw": "{\r\n    \"name\": \"Octavia\",\r\n    \"vehicleTypeId\": 2,\r\n    \"fuelTypeId\": 2,\r\n    \"makeId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -498,7 +528,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/models/1",
+							"raw": "http://localhost:8080/api/models/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -507,7 +537,7 @@
 							"path": [
 								"api",
 								"models",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -526,7 +556,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/models/by-page/1?page=0&size=3",
+							"raw": "http://localhost:8080/api/models/by-make/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -535,18 +565,8 @@
 							"path": [
 								"api",
 								"models",
-								"by-page",
+								"by-make",
 								"1"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "size",
-									"value": "3"
-								}
 							]
 						}
 					},

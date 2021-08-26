@@ -1,9 +1,9 @@
 <div class="box">
-    <p>sort works!</p>
+    <!-- <p>sort works!</p>
     <mat-label>neki input</mat-label>
     <input matInput [(ngModel)]="val">
     <button (click)="send()">send</button>
-    <h4>mat-select</h4>
+    <h4>mat-select</h4> -->
     
     <table>
         <tr>
@@ -11,7 +11,7 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Make</mat-label>
                     <mat-select [(value)]="make">
-                        <mat-option>None</mat-option>
+                        <mat-option (click)="clearModels()">None</mat-option>
                         <mat-option *ngFor="let make of makes" [value]="make" (click)="loadModels()">{{make.name}}
                         </mat-option>
                     </mat-select>
@@ -20,7 +20,7 @@
             <td>
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Model</mat-label>
-                    <mat-select>
+                    <mat-select [(value)]="model">
                         <mat-option>All</mat-option>
                         <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
                     </mat-select>
@@ -101,12 +101,26 @@
             <td>
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Vehicle type</mat-label>
-                    <mat-select [(value)]="type">
+                    <mat-select [(value)]="vehicleType">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let type of vehicleTypes" [value]="type">{{type.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Fuel type</mat-label>
+                    <mat-select [(value)]="fuelType">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of fuelTypes" [value]="type">{{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td></td>
+            <td style="text-align: right;">
+                <button mat-raised-button (click)="send()" style="width : 8em; height: 3em;">Search</button>
             </td>
         </tr>
 

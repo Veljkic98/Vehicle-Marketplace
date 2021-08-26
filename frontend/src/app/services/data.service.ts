@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Filter } from '../model/filter.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DataService {
 
-    private messageSource = new BehaviorSubject('default message');
-    currentMessage = this.messageSource.asObservable();
+
+    private filterSource = new BehaviorSubject(new Filter());
+    currentMessage = this.filterSource.asObservable();
 
     constructor() { }
 
-    changeMessage(message: string) {
-        this.messageSource.next(message)
+    sendFilter(filter: Filter) {
+        this.filterSource.next(filter)
     }
 
 }

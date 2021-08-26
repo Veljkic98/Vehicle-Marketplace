@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Filter } from 'src/app/model/filter.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-offer',
-  templateUrl: './offer.component.html',
-  styleUrls: ['./offer.component.css']
+  selector: 'app-offers',
+  templateUrl: './offers.component.html',
+  styleUrls: ['./offers.component.css']
 })
-export class OfferComponent implements OnInit {
+export class OffersComponent implements OnInit {
 
   val = ""
+  filter: Filter = new Filter();
+
   subscription: Subscription;
 
   constructor(
@@ -17,7 +20,9 @@ export class OfferComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
+    this.subscription = this.data.currentMessage.subscribe(filter =>{
+      this.filter = filter;
+    })
   }
 
   ngOnDestroy() {

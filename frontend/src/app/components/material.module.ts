@@ -15,11 +15,18 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './features/login/login.component';
 import { OffersHomeComponent } from './features/offer/offers-home/offers-home.component';
-import { OfferComponent } from './features/offer/offer/offer.component';
+import { OffersComponent } from './features/offer/offers/offers.component';
 import { FilterComponent } from './features/offer/filter/filter.component';
 
 @NgModule({
-  declarations: [ToolbarComponent, HomePageComponent, LoginComponent, OffersHomeComponent, OfferComponent, FilterComponent], // My components goes here
+  declarations: [
+    ToolbarComponent, 
+    HomePageComponent, 
+    LoginComponent, 
+    OffersHomeComponent, 
+    OffersComponent, 
+    FilterComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
