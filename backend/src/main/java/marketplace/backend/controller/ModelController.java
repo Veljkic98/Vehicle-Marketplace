@@ -1,10 +1,10 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,11 +39,11 @@ public class ModelController {
     }
 
     @GetMapping(path = "/by-page/{makeId}")
-    public ResponseEntity<?> getAllByMakeId(Pageable pageable, @PathVariable Long makeId) {
+    public ResponseEntity<?> getAllByMakeId(@PathVariable Long makeId) {
 
-        Page<Model> models = modelService.findAllByMakeId(pageable, makeId);
+        List<Model> models = modelService.findAllByMakeId(makeId);
 
-        return new ResponseEntity<>(mapper.toDtoPage(models), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDtoList(models), HttpStatus.OK);
     }
 
     @PostMapping

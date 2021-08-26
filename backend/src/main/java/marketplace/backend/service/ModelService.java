@@ -1,9 +1,9 @@
 package marketplace.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import marketplace.backend.exception.exceptions.global.MyEntityNotFoundException;
@@ -67,12 +67,12 @@ public class ModelService implements MyService<Model> {
         modelRepository.deleteById(id);
     }
 
-    public Page<Model> findAllByMakeId(Pageable pageable, Long makeId) {
+    public List<Model> findAllByMakeId(Long makeId) {
 
         if (makeRepository.findById(makeId).orElse(null) == null)
             throw new MyEntityNotFoundException("Make", makeId);
 
-        Page<Model> page = modelRepository.findByMakeId(makeId, pageable);
+        List<Model> page = modelRepository.findByMakeId(makeId);
 
         return page;
     }
