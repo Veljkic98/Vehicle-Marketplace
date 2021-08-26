@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Model } from '../model/model.model';
+import { VehicleType } from '../model/vehicleType.model';
 
 const REST_ENDPOINT = {
-  GET: '/models',
-  GET_BY_MODEL: '/models/by-make',
+  GET_ALL: '/vehicle-types',
 };
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModelService {
+export class VehicleTypeService {
 
   // private headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + JSON.parse(localStorage.getItem('user')).token });
 
@@ -20,7 +19,8 @@ export class ModelService {
     private http: HttpClient,
   ) { }
 
-  getAll(makeId: number): Observable<Model[]> {
-    return this.http.get<Model[]>(`${environment.apiUrl}${REST_ENDPOINT.GET_BY_MODEL}/${makeId}`);
+  getAll(): Observable<VehicleType[]> {
+    return this.http.get<VehicleType[]>(`${environment.apiUrl}${REST_ENDPOINT.GET_ALL}`);
   }
+
 }

@@ -44,7 +44,7 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>1st registration from</mat-label>
                     <mat-select [(value)]="firstRegFrom">
-                        <mat-option *ngFor="let regFrom of regs" [value]="regFrom" (click)="help()">{{regFrom}}</mat-option>
+                        <mat-option *ngFor="let regFrom of regs" [value]="regFrom">{{regFrom}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </td>
@@ -52,7 +52,59 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>1st registration to</mat-label>
                     <mat-select [(value)]="firstRegTo">
-                        <mat-option *ngFor="let regTo of regs" [value]="regTo" (click)="help()">{{regTo}}</mat-option>
+                        <mat-option *ngFor="let regTo of regs" [value]="regTo">{{regTo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>KM from</mat-label>
+                    <input matInput type="number" [(ngModel)]="kmFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>KM to</mat-label>
+                    <input matInput type="number" [(ngModel)]="kmTo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>CC from</mat-label>
+                    <input matInput type="number" [(ngModel)]="ccFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>CC to</mat-label>
+                    <input matInput type="number" [(ngModel)]="ccTo">
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>HP from</mat-label>
+                    <input matInput type="number" [(ngModel)]="hpFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>HP to</mat-label>
+                    <input matInput type="number" [(ngModel)]="hpTo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Vehicle type</mat-label>
+                    <mat-select [(value)]="type">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of vehicleTypes" [value]="type">{{type.name}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
             </td>

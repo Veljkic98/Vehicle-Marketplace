@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Make } from 'src/app/model/make.model';
 import { Model } from 'src/app/model/model.model';
+import { VehicleType } from 'src/app/model/vehicleType.model';
 import { DataService } from 'src/app/services/data.service';
 import { MakeService } from 'src/app/services/make.service';
 import { ModelService } from 'src/app/services/model.service';
+import { VehicleTypeService } from 'src/app/services/vehicle-type.service';
 
 @Component({
   selector: 'app-filter',
@@ -45,30 +47,37 @@ export class FilterComponent implements OnInit {
   priceFrom: number;
   priceTo: number;
 
+  ccFrom: number;
+  ccTo: number;
+
+  hpFrom: number;
+  hpTo: number;
+
+  kmFrom: number;
+  kmTo: number;
+
+  vehicleTypes: VehicleType[] = [];
+  type: VehicleType = new VehicleType({ id: 0, name: '' })
+
   constructor(
     private data: DataService,
     private makeService: MakeService,
     private modelService: ModelService,
+    private vehicleTypeService: VehicleTypeService,
 
   ) { }
-
-  help() {
-    console.log(this.firstRegFrom)
-    console.log(this.firstRegTo)
-  }
 
   ngOnInit(): void {
     this.subscription = this.data.currentMessage.subscribe(message => this.val = message)
 
-    this.help()
     this.loadAllMakes();
+    this.loadAllVehicleTypes();
   }
 
   loadAllMakes() {
     this.makeService.getAll(this.page).subscribe(
       res => {
         this.makes = res.content
-        console.log(this.makes)
       }
     )
   }
@@ -76,8 +85,15 @@ export class FilterComponent implements OnInit {
   loadModels() {
     this.modelService.getAll(this.make.id).subscribe(
       res => {
-        this.models = res;
         console.log(this.models)
+      }
+    )
+  }
+
+  loadAllVehicleTypes() {
+    this.vehicleTypeService.getAll().subscribe(
+      res => {
+        this.vehicleTypes = res;
       }
     )
   }

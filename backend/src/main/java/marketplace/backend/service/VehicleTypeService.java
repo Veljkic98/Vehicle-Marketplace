@@ -1,5 +1,7 @@
 package marketplace.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -61,6 +63,11 @@ public class VehicleTypeService implements MyService<VehicleType> {
         } catch (DataIntegrityViolationException e) {
             throw new ModelReferenceConstraintViolationException(id, "Vehicle type");
         }
+    }
+
+    public List<VehicleType> findAll() {
+        
+        return vehicleTypeRepository.findAll();
     }
 
 }
