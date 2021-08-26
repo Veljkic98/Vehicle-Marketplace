@@ -12,7 +12,7 @@
                     <mat-label>Make</mat-label>
                     <mat-select [(value)]="make">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let make of makes" [value]="make">{{make.name}}</mat-option>
+                        <mat-option *ngFor="let make of makes" [value]="make" (click)="loadModels()">{{make.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </td>
@@ -20,8 +20,8 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Model</mat-label>
                     <mat-select>
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                        <mat-option>All</mat-option>
+                        <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </td>

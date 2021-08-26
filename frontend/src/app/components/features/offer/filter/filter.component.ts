@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Make } from 'src/app/model/make.model';
+import { Model } from 'src/app/model/model.model';
 import { DataService } from 'src/app/services/data.service';
 import { MakeService } from 'src/app/services/make.service';
+import { ModelService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-filter',
@@ -29,9 +31,14 @@ export class FilterComponent implements OnInit {
   makes: Make[] = [];
   make: Make = new Make({ id: 0, name: "None" });
 
+  models: Model[] = [];
+  model: Model = new Model({id: 0, name: 'None', makeId: 0})
+
   constructor(
     private data: DataService,
     private makeService: MakeService,
+    private modelService: ModelService,
+
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +52,15 @@ export class FilterComponent implements OnInit {
       res => {
         this.makes = res.content
         console.log(this.makes)
+      }
+    )
+  }
+
+  loadModels() {
+    this.modelService.getAll(this.make.id).subscribe(
+      res => {
+        this.models = res;
+        console.log(this.models)
       }
     )
   }
