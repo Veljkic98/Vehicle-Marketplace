@@ -38,7 +38,7 @@ public class ModelController {
         return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/by-page/{makeId}")
+    @GetMapping(path = "by-make/{makeId}")
     public ResponseEntity<?> getAllByMakeId(@PathVariable Long makeId) {
 
         List<Model> models = modelService.findAllByMakeId(makeId);
