@@ -12,12 +12,15 @@ public class AuthenticatedUserResponseDTO {
 
     private String companyName;
 
-    public AuthenticatedUserResponseDTO(Long id, String firstName, String lastName, String email, String companyName) {
+    private String phoneNumber;
+
+    public AuthenticatedUserResponseDTO(Long id, String firstName, String lastName, String email, String companyName, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.companyName = companyName;
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {
@@ -58,6 +61,14 @@ public class AuthenticatedUserResponseDTO {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
 }

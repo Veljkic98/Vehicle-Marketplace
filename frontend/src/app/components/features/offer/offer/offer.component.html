@@ -1,0 +1,35 @@
+<mat-card class="example-card">
+    <mat-card-title></mat-card-title>
+    <img mat-card-image src="assets/r8.png" [src]="offer.imageUri"
+        alt="png">
+    <mat-card-header>
+        <mat-card-title>{{ offer.vehicle.model.make.name }} {{ offer.vehicle.model.name }}</mat-card-title>
+        <mat-card-subtitle>{{ offer.location.city }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <p>
+            <span id="item">{{ offer.vehicle.fuelType.name }}</span>
+            <span id="item">{{ offer.vehicle.kilometer }} km</span>
+            <span id="item">{{ offer.vehicle.power }} HP</span>
+        </p>
+        <p>
+            <span id="item">{{ offer.vehicle.cubicCapacity }} cc</span>
+            <span id="item">{{ offer.vehicle.firstRegistration | date :  "y/MM" }}</span>
+        </p>
+
+        <p style="margin: 0.5em; padding-top: 1em; padding-bottom: 0.7em;">
+            {{ offerRes.description }}
+        </p>
+
+        <p style="margin: 0.5em; font-style: italic;">{{ offer.authenticatedUser.phoneNumber }}</p>
+
+        <p id="price">
+            {{ offer.price }} $
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>DELETE</button>
+        <button mat-button>EDIT</button>
+    </mat-card-actions>
+</mat-card>

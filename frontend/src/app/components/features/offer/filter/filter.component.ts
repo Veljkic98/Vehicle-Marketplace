@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Filter } from 'src/app/model/filter.model';
 import { FuelType } from 'src/app/model/fuelType.model';
 import { Make } from 'src/app/model/make.model';
-import { Model } from 'src/app/model/model.model';
+import { ModelRes } from 'src/app/model/modelRes.model';
 import { VehicleType } from 'src/app/model/vehicleType.model';
 import { DataService } from 'src/app/services/data.service';
 import { FuelTypeService } from 'src/app/services/fuel-type.service';
@@ -31,10 +31,10 @@ export class FilterComponent implements OnInit {
   firstRegTo: string = String(Number(this.regs[this.regs.length - 1]) + 1);
 
   makes: Make[] = [];
-  make: Make = new Make({ id: 0, name: "None" });
+  make: Make = new Make();
 
-  models: Model[] = [];
-  model: Model = new Model({ id: 0, name: 'None', makeId: 0 });
+  models: ModelRes[] = [];
+  model: ModelRes = new ModelRes();
 
   priceFrom: number;
   priceTo: number;
@@ -49,10 +49,10 @@ export class FilterComponent implements OnInit {
   kmTo: number;
 
   vehicleTypes: VehicleType[] = [];
-  vehicleType: VehicleType = new VehicleType({ id: 0, name: '' });
+  vehicleType: VehicleType = new VehicleType();
 
   fuelTypes: FuelType[] = [];
-  fuelType: FuelType = new FuelType({ id: 0, name: "" });
+  fuelType: FuelType = new FuelType();
 
   filter: Filter = new Filter();
 
@@ -67,7 +67,7 @@ export class FilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.data.currentMessage.subscribe(message => this.filter = message)
+    // this.subscription = this.data.currentMessage.subscribe(message => this.filter = message)
 
     this.loadAllMakes();
     this.loadAllVehicleTypes();
@@ -120,8 +120,7 @@ export class FilterComponent implements OnInit {
   send() {
     this.createFilter();
 
-    // this.data.changeMessage(this.val);
-    this.data.sendFilter(this.filter);
+    // this.data.sendFilter(this.filter);
   }
 
   createFilter() {
@@ -149,20 +148,21 @@ export class FilterComponent implements OnInit {
     if (this.hpTo == undefined) this.filter.hpTo = 99999;
     else this.filter.hpTo = this.hpTo;
 
-    if (this.vehicleType == undefined) this.filter.vehicleType = new VehicleType({ id: 0, name: '' });
-    else this.filter.vehicleType = this.vehicleType;
+    if (this.vehicleType == undefined) this.filter.vehicleTypeId = 0;
+    else this.filter.vehicleTypeId = this.vehicleType.id;
 
-    if (this.fuelType == undefined) this.filter.fuelType = new FuelType({ id: 0, name: '' });
-    else this.filter.fuelType = this.fuelType;
+    if (this.fuelType == undefined) this.filter.fuelTypeId = 0;
+    else this.filter.fuelTypeId = this.fuelType.id;
 
     if (this.make == undefined) {
-      this.filter.make = new Make({ id: 0, name: "None" });
-      this.model = new Model({ id: 0, name: 'None', makeId: 0 });
+      this.filter.makeId = 0;
+      // this.model = new Model({ id: 0, name: 'None', makeId: 0 });
+      this.model = new ModelRes();
     } 
-    else this.filter.make = this.make;
+    else this.filter.makeId = this.make.id;
 
-    if (this.model == undefined) this.filter.model = new Model({ id: 0, name: 'None', makeId: 0 });
-    else this.filter.model = this.model;
+    if (this.model == undefined) this.filter.modelId = 0;
+    else this.filter.modelId = this.model.id;
 
     this.filter.firstRegFrom = this.firstRegFrom;
     this.filter.firstRegTo = this.firstRegTo;

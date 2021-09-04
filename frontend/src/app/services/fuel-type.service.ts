@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { FuelType } from '../model/fuelType.model';
 
 const REST_ENDPOINT = {
-  GET_ALL: '/fuel-types',
+  GET: '/fuel-types',
 };
 
 @Injectable({
@@ -20,6 +20,10 @@ export class FuelTypeService {
   ) { }
 
   getAll(): Observable<FuelType[]> {
-    return this.http.get<FuelType[]>(`${environment.apiUrl}${REST_ENDPOINT.GET_ALL}`);
+    return this.http.get<FuelType[]>(`${environment.apiUrl}${REST_ENDPOINT.GET}`);
+  }
+
+  getOne(id: number) {
+    return this.http.get<FuelType>(`${environment.apiUrl}${REST_ENDPOINT.GET}/` + id).toPromise();
   }
 }

@@ -20,22 +20,27 @@ public class AuthenticatedUser extends User {
     @OneToMany(mappedBy = "authenticatedUser")
     private List<Offer> offers;
 
+    @Column(name = "phone_number", nullable = false, unique = true)
+    private String phoneNumber;
+
     public AuthenticatedUser() {
         super();
     }
 
     public AuthenticatedUser(String firstName, String lastName, String email, String password, String companyName,
-            List<Offer> offers) {
+            List<Offer> offers, String phoneNumber) {
         super(firstName, lastName, email, password);
         this.companyName = companyName;
         this.offers = offers;
+        this.phoneNumber = phoneNumber;
     }
 
     public AuthenticatedUser(Long id, String firstName, String lastName, String email, String password,
-            String companyName, List<Offer> offers) {
+            String companyName, List<Offer> offers, String phoneNumber) {
         super(id, firstName, lastName, email, password);
         this.companyName = companyName;
         this.offers = offers;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getCompanyName() {
@@ -52,6 +57,14 @@ public class AuthenticatedUser extends User {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

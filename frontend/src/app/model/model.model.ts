@@ -1,17 +1,11 @@
+import { Make } from "./make.model";
+
 export class Model {
     public id: number;
     public name: string;
-    public makeId: number;
+    public make: Make;
 
-    constructor(modelCfg: IModel) {
-        this.id = modelCfg.id;
-        this.name = modelCfg.name;
-        this.makeId = modelCfg.makeId;
+    constructor() {
+        this.make = new Make();
     }
-}
-
-interface IModel {
-    id?: number;
-    name: string;
-    makeId: number;
 }

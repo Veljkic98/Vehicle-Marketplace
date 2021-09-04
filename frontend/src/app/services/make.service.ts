@@ -6,7 +6,8 @@ import { Make } from '../model/make.model';
 import { Page } from '../model/page.model';
 
 const REST_ENDPOINT = {
-  GET: '/makes/by-page',
+  GET_ALL: '/makes/by-page',
+  GET: '/makes',
   MAKES_PER_PAGE: 3
 };
 
@@ -23,5 +24,9 @@ export class MakeService {
 
   getAll(page: number): Observable<Page<Make>> {
     return this.http.get<Page<Make>>(`${environment.apiUrl}${REST_ENDPOINT.GET}?page=${page}&size=${REST_ENDPOINT.MAKES_PER_PAGE}&sort=id,ASC`);
+  }
+
+  getOne(id: number) {
+    return this.http.get<Make>(`${environment.apiUrl}${REST_ENDPOINT.GET}/` + id).toPromise();
   }
 }

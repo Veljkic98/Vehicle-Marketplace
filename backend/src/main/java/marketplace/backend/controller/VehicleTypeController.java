@@ -32,7 +32,7 @@ public class VehicleTypeController {
     @Autowired
     private VehicleTypeMapper mapper;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
 

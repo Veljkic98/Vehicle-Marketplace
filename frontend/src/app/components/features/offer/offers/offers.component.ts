@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Filter } from 'src/app/model/filter.model';
+import { OfferRes } from 'src/app/model/offerRes.model';
 import { DataService } from 'src/app/services/data.service';
+import { OfferService } from 'src/app/services/offer.service';
 
 @Component({
   selector: 'app-offers',
@@ -10,23 +12,46 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class OffersComponent implements OnInit {
 
-  val = ""
-  filter: Filter = new Filter();
+  // subscription: Subscription;
+  offers: Array<OfferRes> = [];
+  row1: Array<OfferRes> = [];
+  row2: Array<OfferRes> = [];
 
-  subscription: Subscription;
+  rest = false;
 
   constructor(
-    private data: DataService,
+    private offerService: OfferService,
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.data.currentMessage.subscribe(filter =>{
-      this.filter = filter;
-    })
+    this.loadOffers();
+  }
+
+  loadOffers() {
+    this.offerService.getAll(0, 5).subscribe(
+      res => {
+        this.offers = res.content
+        // console.log(res)
+
+        var help = true;
+        for (var o of this.offers) {
+          if (help) this.row1.push(o);
+          else this.row2.push(o);
+
+          if (help) help = false;
+          else help = true;
+        }
+
+
+        if ((res.size % 2) == 1) this.rest = true;
+        else this.rest = false;
+      }
+
+    )
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }

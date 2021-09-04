@@ -17,6 +17,7 @@ import { LoginComponent } from './features/login/login.component';
 import { OffersHomeComponent } from './features/offer/offers-home/offers-home.component';
 import { OffersComponent } from './features/offer/offers/offers.component';
 import { FilterComponent } from './features/offer/filter/filter.component';
+import { OfferComponent } from './features/offer/offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FilterComponent } from './features/offer/filter/filter.component';
     LoginComponent, 
     OffersHomeComponent, 
     OffersComponent, 
-    FilterComponent
+    FilterComponent, OfferComponent,
   ],
   imports: [
     CommonModule,

@@ -1,2 +1,29 @@
-<p>offer works!</p>
-ovo je stiglo sa filter-a: {{val}}
+<table id="main-t">
+    <tr *ngFor="let item of row2; let i = index;" [attr.data-index]="i">
+        <td>
+            <div style="padding-top: 2rem;">
+                <div class="box">
+                    <app-offer [offerRes]="row1[i]"></app-offer>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div style="padding-top: 2rem;">
+                <div class="box">
+                    <app-offer [offerRes]="row2[i]"></app-offer>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
+    <tr *ngIf="rest == true">
+        <td>
+            <div style="padding-top: 2rem;">
+                <div class="box">
+                    <app-offer [offerRes]="row1.slice(-1)[0]"></app-offer>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
