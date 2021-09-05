@@ -4,6 +4,7 @@ import { Offer } from 'src/app/model/offer.model';
 import { OfferRes } from 'src/app/model/offerRes.model';
 import { VehicleRes } from 'src/app/model/vehicleRes.model';
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FuelTypeService } from 'src/app/services/fuel-type.service';
 import { LocationService } from 'src/app/services/location.service';
 import { MakeService } from 'src/app/services/make.service';
@@ -31,6 +32,7 @@ export class OfferComponent implements OnInit {
     private vehicleTypeService: VehicleTypeService,
     private makeService: MakeService,
     private authUserService: AuthUserService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit(): void {

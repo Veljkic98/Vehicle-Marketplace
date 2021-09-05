@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.success = true;
 
-          localStorage.setItem('user-admin', JSON.stringify({
+          localStorage.setItem('user', JSON.stringify({
             username: this.loginForm.value.email,
             token: data.accessToken,
             refreshToken: data.accessTokenRefresh,
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
             role: payload.role
           }));
 
-          console.log("Printamo sta smo sacuvali.")
-          console.log(localStorage.getItem('user-admin'))
+          // console.log("Printamo sta smo sacuvali.")
+          // console.log(localStorage.getItem('user'))
 
           this.router.navigate(['']);
         },

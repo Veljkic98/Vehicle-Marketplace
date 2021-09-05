@@ -2,7 +2,8 @@
     <mat-toolbar-row>
         <a href="/"> <span> {{title}} </span> </a>
         <button mat-button routerLink="/">Option 1</button>
-        <button mat-button routerLink="/offers-home">Offers</button>
+        <button mat-button [routerLink]="['/offers-home', 'all']">Offers</button>
+        <button mat-button [routerLink]="['/offers-home-mine', 'mine']" *ngIf="authService.getRole() == 'ROLE_USER'">My Offers</button>
         
         <span class="menu-spacer"></span>
 

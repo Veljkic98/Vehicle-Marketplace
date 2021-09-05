@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,7 +25,13 @@ export class OfferService {
   //   return this.http.post<Page<Offer>>(`${environment.apiUrl}${REST_ENDPOINT.GET_ALL}` + `/filter/by-page/?page=${page}&size=${size}&sort=id,ASC`, filter);
   // }
 
-  getAll(page: number, size: number): Observable<Page<OfferRes>> {
-    return this.http.get<Page<OfferRes>>(`${environment.apiUrl}${REST_ENDPOINT.GET}` + `/by-page/?page=${page}&size=${size}&sort=id,ASC`);
+  getAll(page: number, size: number, which: string) {
+    if (which == "mine") {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + JSON.parse(localStorage.getItem('user')).token });
+
+      return this.http.get<Page<OfferRes>>(`${environment.apiUrl}${REST_ENDPOINT.GET}` + `/by-page/my/?page=${page}&size=${size}&sort=id,ASC`, { headers: headers }).toPromise();
+    } else {
+      return this.http.get<Page<OfferRes>>(`${environment.apiUrl}${REST_ENDPOINT.GET}` + `/by-page/?page=${page}&size=${size}&sort=id,ASC`).toPromise();
+    }
   }
 }

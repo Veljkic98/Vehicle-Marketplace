@@ -29,7 +29,7 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>DELETE</button>
-        <button mat-button>EDIT</button>
+        <button mat-button *ngIf="authService.getRole() === 'ROLE_ADMIN' || authService.getRole() === 'ROLE_USER'">DELETE</button>
+        <button mat-button *ngIf="authService.getRole() === 'ROLE_USER'">EDIT</button>
     </mat-card-actions>
 </mat-card>

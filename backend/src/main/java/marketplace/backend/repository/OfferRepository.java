@@ -13,5 +13,5 @@ import marketplace.backend.model.Offer;
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
     @Transactional
-    Page<Offer> findByAuthenticatedUserId(Long id, Pageable pageable);
+    Page<Offer> findAllByAuthenticatedUserId(Long id, Pageable pageable);
 }

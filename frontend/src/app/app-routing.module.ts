@@ -4,6 +4,7 @@ import { LoginComponent } from './components/features/login/login.component';
 // import { OffersComponent } from './components/features/offer/offers/offers.component';
 import { OffersHomeComponent } from './components/features/offer/offers-home/offers-home.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -16,21 +17,23 @@ const routes: Routes = [
         // canActivate: [LoginGuard]
       },
       {
-        path: 'offers-home',
+        path: 'offers-home/:which',
         component: OffersHomeComponent,
-        // children: [
-        //   {
-        //     path: 'offer',
-        //     component: OfferComponent,
-        //   }
-        // ]
+      },
+      {
+        path: 'offers-home-mine/:which',
+        component: OffersHomeComponent,
+        // canActivate: [LoginGuard],
+        // data: { expectedRoles: 'ROLE_USER' }
       },
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
