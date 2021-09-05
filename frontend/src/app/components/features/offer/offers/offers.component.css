@@ -11,3 +11,12 @@ td {
 #main-t {
     margin: auto;
 }
+
+#box-page {
+    /* width: 400px; */
+    padding: 3em;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* margin: auto; */
+}

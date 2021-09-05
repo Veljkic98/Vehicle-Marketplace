@@ -17,6 +17,14 @@ export class OffersComponent implements OnInit {
   row1: Array<OfferRes> = [];
   row2: Array<OfferRes> = [];
 
+  page = 0;
+  size = 3;
+  totalPages = 0;
+
+  currentPage = 0;
+  disablePrevious = true;
+  disableNext = false;
+
   rest = false;
 
   constructor(
@@ -28,8 +36,15 @@ export class OffersComponent implements OnInit {
   }
 
   loadOffers() {
-    this.offerService.getAll(0, 5).subscribe(
+    this.offerService.getAll(this.page, this.size).subscribe(
       res => {
+        console.log(res)
+        this.row1 = [];
+        this.row2 = [];
+
+        if (res.totalElements == res.size) this.disableNext = true;
+        this.totalPages = res.totalPages;
+
         this.offers = res.content
 
         var help = true;
@@ -47,6 +62,26 @@ export class OffersComponent implements OnInit {
       }
 
     )
+  }
+
+  next() {
+    this.page = this.page + 1;
+    
+    this.disablePrevious = false;
+
+    if ((this.page + 1) == this.totalPages) this.disableNext = true;
+
+    this.loadOffers();
+
+  }
+
+  previous() {
+    this.page = this.page - 1;
+
+    if (this.page == 0) this.disablePrevious = true;
+    if ((this.page + 1) < this.totalPages) this.disableNext = false;
+
+    this.loadOffers();
   }
 
   ngOnDestroy() {

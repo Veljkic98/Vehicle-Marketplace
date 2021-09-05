@@ -27,3 +27,9 @@
         </td>
     </tr>
 </table>
+
+<div id="box-page">
+    <button mat-button (click)="previous()" [disabled]="disablePrevious">Previous</button>
+    <button mat-button disabled>{{ page + 1 }}</button>
+    <button mat-button (click)="next()" [disabled]="disableNext">Next</button>
+</div>
