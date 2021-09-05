@@ -34,4 +34,10 @@ export class OfferService {
       return this.http.get<Page<OfferRes>>(`${environment.apiUrl}${REST_ENDPOINT.GET}` + `/by-page/?page=${page}&size=${size}&sort=id,ASC`).toPromise();
     }
   }
+
+  delete(id: number) {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + JSON.parse(localStorage.getItem('user')).token });
+      
+      return this.http.delete(`${environment.apiUrl}${REST_ENDPOINT.GET}/${id}`, { headers: headers });
+  }
 }

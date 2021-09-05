@@ -97,7 +97,7 @@ public class OfferController {
 
     @DeleteMapping(path = "/{id}")
     @PreAuthorize("hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) { 
 
         offerService.deleteById(id);
 

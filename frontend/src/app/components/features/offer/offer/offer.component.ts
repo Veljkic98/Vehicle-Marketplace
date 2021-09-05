@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from 'src/app/model/location.model';
 import { Offer } from 'src/app/model/offer.model';
 import { OfferRes } from 'src/app/model/offerRes.model';
@@ -9,6 +10,7 @@ import { FuelTypeService } from 'src/app/services/fuel-type.service';
 import { LocationService } from 'src/app/services/location.service';
 import { MakeService } from 'src/app/services/make.service';
 import { ModelService } from 'src/app/services/model.service';
+import { OfferService } from 'src/app/services/offer.service';
 import { VehicleTypeService } from 'src/app/services/vehicle-type.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 
@@ -33,7 +35,9 @@ export class OfferComponent implements OnInit {
     private makeService: MakeService,
     private authUserService: AuthUserService,
     public authService: AuthService,
-  ) { }
+    private offerService: OfferService,
+    private snackBar: MatSnackBar,
+    ) { }
 
   ngOnInit(): void {
     this.loadOffer();
@@ -64,6 +68,25 @@ export class OfferComponent implements OnInit {
     this.offer.vehicle.fuelType = await this.fuelTypeService.getOne(vehicleRes.fuelTypeId);
     this.offer.vehicle.vehicleType = await this.vehicleTypeService.getOne(vehicleRes.vehicleTypeId);
     this.offer.authenticatedUser = await this.authUserService.getOne(this.offerRes.authenticatedUserId);
+  }
+
+  delete() {
+    console.log(this.offerRes.id);
+    this.offerService.delete(this.offerRes.id).subscribe(
+      res => {
+        location.reload();
+      }, err => {
+        if (err.status == 504) {
+          this.openSnackBar('You are offline! Go online and then delete offer.');
+        }
+      }
+    )
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }

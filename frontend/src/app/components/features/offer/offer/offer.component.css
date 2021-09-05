@@ -19,3 +19,16 @@ img {
     font-style: Arial;
     font-style: Verdana;
 }
+
+#auth-data {
+    /* text-align: right; */
+    font-size: 15px;
+    font-style: Arial;
+    font-style: Verdana;
+    margin-left: 0.5em; 
+    margin-bottom: 2.5em; 
+}
+
+#span-data {
+    font-style: italic;
+}

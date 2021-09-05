@@ -35,7 +35,7 @@ public class Offer {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.DETACH)
     private File images;
 
     @ManyToOne

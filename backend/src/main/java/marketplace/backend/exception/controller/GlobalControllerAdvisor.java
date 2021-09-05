@@ -19,6 +19,8 @@ public class GlobalControllerAdvisor {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Error> dataIntegrityViolation(DataIntegrityViolationException e) {
 
+        System.out.println("--------------------------------");
+        System.out.println(e);
         Error error = new Error(400, "Data integrity error occured.");
 
         return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);

@@ -20,7 +20,7 @@ export class OffersComponent implements OnInit {
   row2: Array<OfferRes> = [];
 
   page = 0;
-  size = 2;
+  size = 5;
   totalPages = 0;
 
   currentPage = 0;
