@@ -31,7 +31,6 @@ export class OffersComponent implements OnInit {
     this.offerService.getAll(0, 5).subscribe(
       res => {
         this.offers = res.content
-        // console.log(res)
 
         var help = true;
         for (var o of this.offers) {
