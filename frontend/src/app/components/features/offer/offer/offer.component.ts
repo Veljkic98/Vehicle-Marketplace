@@ -75,6 +75,7 @@ export class OfferComponent implements OnInit {
     this.offerService.delete(this.offerRes.id).subscribe(
       res => {
         location.reload();
+        this.openSnackBar('You successfully deleted offer.');
       }, err => {
         if (err.status == 504) {
           this.openSnackBar('You are offline! Go online and then delete offer.');

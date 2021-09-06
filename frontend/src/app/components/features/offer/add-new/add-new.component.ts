@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuelType } from 'src/app/model/fuelType.model';
 import { Location } from 'src/app/model/location.model';
 import { Make } from 'src/app/model/make.model';
@@ -27,7 +28,7 @@ export class AddNewComponent implements OnInit {
     '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000',
     '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011',
     '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'
-  ]
+  ].reverse();
 
   firstReg: string = "1989";
 
@@ -71,6 +72,7 @@ export class AddNewComponent implements OnInit {
     private locationService: LocationService,
     private vehicleService: VehicleService,
     private offerService: OfferService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -80,15 +82,7 @@ export class AddNewComponent implements OnInit {
     this.loadAllFuelTypes();
     this.loadAllLocations();
   }
-  /*
-  ////////////////////////////////////////
-  - Sve ono sto sam radio da mi se izbzace odrednjeni tipovi pobrisati
-  - sam mogu da biram sve. mogu da stavim da je audi a8 kombi ako hocu
-  - napraviti prvo dodavanje vozila pa zatim dodavanje oglasa
-  
-  
-  ////////////////////////////////////////
-  */
+
   /**
    * Take url of choosen image.
    *
@@ -102,7 +96,7 @@ export class AddNewComponent implements OnInit {
 
   createVehicle() {
     this.vehicle.cubicCapacity = this.cc;
-    this.vehicle.firstRegistration = '01-01-'+ this.firstReg;
+    this.vehicle.firstRegistration = '01-01-' + this.firstReg;
     this.vehicle.fuelTypeId = this.fuelType.id;
     this.vehicle.kilometer = this.km;
     this.vehicle.modelId = this.model.id;
@@ -118,13 +112,6 @@ export class AddNewComponent implements OnInit {
 
     this.createVehicle();
 
-    // this.vehicles.forEach(v => {
-    //   if (v.modelId == this.model.id && v.fuelTypeId == this.fuelType.id && v.vehicleTypeId == this.vehicleType.id) {
-    //     vehicleId = v.id;
-    //     // return;
-    //   }
-    // });
-
     var addedVehicle = await this.vehicleService.post(this.vehicle).toPromise();
 
     var offerReq: OfferReq = new OfferReq(
@@ -138,18 +125,15 @@ export class AddNewComponent implements OnInit {
 
     console.log(offerReq);
 
-    //TODO: Add offer
-    await this.offerService.post(offerReq, this.url).toPromise();
-    // subscribe(
-    //   res => {
-    //     console.log("Uspesno smo dodali auto")
-    //     console.log(res);
-
-    //   }, err =>{ 
-    //     console.log("GRESKA"); 
-    //     console.log(err);
-    //   }
-    // );
+    // Add offer
+    await this.offerService.post(offerReq, this.url).toPromise().then(
+      () => {
+        this.openSnackBar('You successfuly added new offer.');
+      }, err => {
+        if (err.status == 504) this.openSnackBar('You are offline! Go online and then delete offer.');
+        else this.openSnackBar('There is problem adding new offer.');
+      }
+    );
   }
 
   validate(): boolean {
@@ -188,15 +172,6 @@ export class AddNewComponent implements OnInit {
     )
   }
 
-  async chooseVehicles() {
-    // await this.loadAllVehicles();
-    // await this.loadAllVehicleTypes();
-    // await this.loadAllFuelTypes();
-
-    // await this.filterVehicles();
-    // await this.filterVehicleTypes();
-    // await this.filterFuelTypes();
-  }
 
   loadModels() {
     this.modelService.getAll(this.make.id).subscribe(
@@ -205,50 +180,6 @@ export class AddNewComponent implements OnInit {
       }
     )
   }
-
-  // filterVehicles() {
-  //   var i = this.vehicles.length;
-  //   console.log(this.models)
-
-  //   while (i--) {
-  //     var del = true;
-
-  //     this.models.forEach(m => {
-  //       if (m.id == this.vehicles[i].modelId && m.name == this.model.name) del = false;
-  //     });
-
-  //     if (del) this.vehicles.splice(i, 1);
-  //   }
-  //   console.log(this.vehicles)
-  // }
-
-  // filterVehicleTypes() {
-  //   var i = this.vehicleTypes.length;
-
-  //   while (i--) {
-  //     var del = true;
-
-  //     this.vehicles.forEach(v => {
-  //       if (v.vehicleTypeId == this.vehicleTypes[i].id) del = false;
-  //     });
-
-  //     if (del) this.vehicleTypes.splice(i, 1);
-  //   }
-  // }
-
-  // filterFuelTypes() {
-  //   var i = this.fuelTypes.length;
-
-  //   while (i--) {
-  //     var del = true;
-
-  //     this.vehicles.forEach(v => {
-  //       if (v.fuelTypeId == this.fuelTypes[i].id) del = false;
-  //     });
-
-  //     if (del) this.fuelTypes.splice(i, 1);
-  //   }
-  // }
 
   async loadAllVehicleTypes() {
     this.vehicleTypes = await this.vehicleTypeService.getAll().toPromise();
@@ -261,6 +192,12 @@ export class AddNewComponent implements OnInit {
   clearModels() {
     this.models = [];
     this.model = undefined;
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }
