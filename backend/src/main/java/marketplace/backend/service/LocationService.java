@@ -1,5 +1,7 @@
 package marketplace.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,11 @@ public class LocationService implements MyService<Location> {
             throw new MyEntityNotFoundException("Location", id);
 
         locationRepository.deleteById(id);
+    }
+
+    public List<Location> findAll() {
+        
+        return locationRepository.findAll();
     }
 
 }

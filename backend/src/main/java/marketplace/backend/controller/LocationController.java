@@ -1,5 +1,7 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,14 @@ public class LocationController {
         Location location = locationService.findById(id);
 
         return new ResponseEntity<>(mapper.toDto(location), HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findAll() {
+
+        List<Location> locations = locationService.findAll();
+
+        return new ResponseEntity<>(mapper.toDtoList(locations), HttpStatus.OK);
     }
 
     @PostMapping

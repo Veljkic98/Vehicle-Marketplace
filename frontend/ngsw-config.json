@@ -45,7 +45,9 @@
         "http://localhost:8080/api/makes/**",
         "http://localhost:8080/api/fuel-types/**",
         "http://localhost:8080/api/vehicle-types/**",
-        "http://localhost:8080/api/authenticated-users/**"
+        "http://localhost:8080/api/authenticated-users/**",
+        "http://localhost:8080/api/makes/by-page?page=0&size=1000",
+        "http://localhost:8080/api/models/by-make/**"
       ],
       "cacheConfig": {
         "maxSize": 100,

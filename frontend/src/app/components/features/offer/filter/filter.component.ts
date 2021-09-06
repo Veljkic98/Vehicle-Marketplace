@@ -75,7 +75,7 @@ export class FilterComponent implements OnInit {
   }
 
   loadAllMakes() {
-    this.makeService.getAll(this.page).subscribe(
+    this.makeService.getAll(0, 300).subscribe(
       res => {
         this.makes = res.content
       }

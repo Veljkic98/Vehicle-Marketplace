@@ -72,7 +72,7 @@ public class OfferController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    // @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> add(@RequestPart("file") MultipartFile file,
             @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
@@ -82,7 +82,7 @@ public class OfferController {
     }
 
     @PutMapping(path = "/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    // @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestPart("file") MultipartFile file,
             @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
@@ -97,7 +97,7 @@ public class OfferController {
 
     @DeleteMapping(path = "/{id}")
     @PreAuthorize("hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> delete(@PathVariable Long id) { 
+    public ResponseEntity<?> delete(@PathVariable Long id) {
 
         offerService.deleteById(id);
 

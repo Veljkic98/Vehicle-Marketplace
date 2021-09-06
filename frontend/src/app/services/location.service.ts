@@ -22,4 +22,8 @@ export class LocationService {
   getOne(id: number) {
     return this.http.get<Location>(`${environment.apiUrl}${REST_ENDPOINT.GET}/` + id).toPromise();
   }
+
+  getAll() {
+    return this.http.get<Location[]>(`${environment.apiUrl}${REST_ENDPOINT.GET}`).toPromise();
+  }
 }

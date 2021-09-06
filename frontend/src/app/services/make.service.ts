@@ -8,7 +8,7 @@ import { Page } from '../model/page.model';
 const REST_ENDPOINT = {
   GET_ALL: '/makes/by-page',
   GET: '/makes',
-  MAKES_PER_PAGE: 3
+  MAKES_PER_PAGE: 800
 };
 
 @Injectable({
@@ -22,8 +22,8 @@ export class MakeService {
     private http: HttpClient,
   ) { }
 
-  getAll(page: number): Observable<Page<Make>> {
-    return this.http.get<Page<Make>>(`${environment.apiUrl}${REST_ENDPOINT.GET}?page=${page}&size=${REST_ENDPOINT.MAKES_PER_PAGE}&sort=id,ASC`);
+  getAll(page: number, size: number): Observable<Page<Make>> {
+    return this.http.get<Page<Make>>(`${environment.apiUrl}${REST_ENDPOINT.GET_ALL}?page=${page}&size=${size}&sort=id,ASC`);
   }
 
   getOne(id: number) {

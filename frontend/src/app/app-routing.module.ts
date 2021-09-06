@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/features/login/login.component';
+import { AddNewComponent } from './components/features/offer/add-new/add-new.component';
 // import { OffersComponent } from './components/features/offer/offers/offers.component';
 import { OffersHomeComponent } from './components/features/offer/offers-home/offers-home.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
         component: OffersHomeComponent,
         // canActivate: [LoginGuard],
         // data: { expectedRoles: 'ROLE_USER' }
+      },
+      {
+        path: 'add-new',
+        component: AddNewComponent,
       },
     ]
   }
