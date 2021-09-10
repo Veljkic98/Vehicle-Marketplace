@@ -77,7 +77,9 @@ export class OffersComponent implements OnInit {
         else this.rest = false;
       }, err => {
         if (err.status == 504) {
-          this.openSnackBar('You are offline! Go online to access another page.');
+          if (this.which == 'mine') this.openSnackBar('You are offline! Go online to see your offers.');
+          else this.openSnackBar('You are offline! Go online to access another page.');
+          
           this.error = true;
         }
       }

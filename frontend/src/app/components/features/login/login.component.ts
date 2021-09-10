@@ -64,8 +64,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         },
         error => {
-          this.error = error.error ? error.error.message : 'Your account is not verified';
-          this.loading = false;
+          if (error.status == 504) {
+            this.error = error.error ? error.error.message : 'Your don' + `'`+ 't have internet connection.';
+            this.loading = false;
+          } else {
+            this.error = error.error ? error.error.message : 'Your account is not verified.';
+            this.loading = false;
+          }
+
         });
   }
 

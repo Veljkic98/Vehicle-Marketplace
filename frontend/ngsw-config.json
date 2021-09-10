@@ -35,24 +35,29 @@
   ],
   "dataGroups": [
     {
-      "name": "gets",
+      "name": "frontend",
       "urls": [
         "http://localhost:8080/api/offers/by-page/?page=0&size=5&sort=id,ASC",
-        "http://localhost:8080/api/locations/**",
         "http://localhost:8080/api/files/**",
         "http://localhost:8080/api/vehicles/**",
+        "http://localhost:8080/api/vehicles",
+        "http://localhost:8080/api/models/by-make/**",
         "http://localhost:8080/api/models/**",
+        "http://localhost:8080/api/makes/by-page?page=0&size=1000&sort=id,ASC",
         "http://localhost:8080/api/makes/**",
+        "http://localhost:8080/api/locations",
+        "http://localhost:8080/api/locations/**",
         "http://localhost:8080/api/fuel-types/**",
+        "http://localhost:8080/api/fuel-types",
         "http://localhost:8080/api/vehicle-types/**",
+        "http://localhost:8080/api/vehicle-types",
         "http://localhost:8080/api/authenticated-users/**",
-        "http://localhost:8080/api/makes/by-page?page=0&size=1000",
-        "http://localhost:8080/api/models/by-make/**"
+        "http://localhost:8080/api/makes/by-page?page=0&size=1000"
       ],
       "cacheConfig": {
-        "maxSize": 100,
-        "maxAge": "6h",
-        "timeout": "3s",
+        "maxSize": 10000,
+        "maxAge": "3d",
+        "timeout": "6s",
         "strategy": "freshness"
       }
     }

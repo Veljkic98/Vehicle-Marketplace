@@ -46,6 +46,10 @@ insert into model (name, make_id) values ('A7', 2);
 
 insert into files (data, name, type) values (lo_import('/Users/images/320.jpg'), '320.jpg', 'image/jpeg');
 insert into files (data, name, type) values (lo_import('/Users/images/520.jpg'), '520.jpg', 'image/jpeg');
+insert into files (data, name, type) values (lo_import('/Users/images/330.jpg'), '330.jpg', 'image/jpeg');
+insert into files (data, name, type) values (lo_import('/Users/images/750Li.jpg'), '750Li.jpg', 'image/jpeg');
+insert into files (data, name, type) values (lo_import('/Users/images/A7.jpg'), 'A7.jpg', 'image/jpeg');
+insert into files (data, name, type) values (lo_import('/Users/images/A8.jpg'), 'A8.jpg', 'image/jpeg');
 -- insert into files (data, name, type) values (lo_import('/Users/images/330.jpg'), '330.jpg', 'image/jpeg');
 -- insert into files (data, name, type) values (lo_import('/Users/images/750Li.jpg'), '750Li.jpg', 'image/jpeg');
 -- insert into files (data, name, type) values (lo_import('/Users/images/A8.jpg'), 'A8.jpg', 'image/jpeg');
@@ -63,9 +67,9 @@ insert into vehicle (cubic_capacity, first_registration, kilometer, number_of_do
 insert into location (country, city) values ('Serbia', 'Novi Sad');
 insert into location (country, city) values ('Serbia', 'Belgrade');
 
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-03-2021' ,'This offer is so god, dont miss the offer.', 1, 2, 1, 15000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com 2.', 2, 1, 2, 19000, 2);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com 3.', 2, 1, 3, 5000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com 4.', 1, 2, 4, 95000, 2);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'Redovno odrzavan u ovlastenom servisu. Za svaku preporuku.', 1, 2, 5, 35000, 1);
-insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('18-01-2021' ,'Auto je kao NOV! Vredi pogledati. Ovo je oglas broj 6...', 1, 2, 6, 38000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-03-2021' ,'This offer is so god, dont miss the offer.', 1, 1, 1, 15000, 1);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('12-03-2021' ,'ofer com 2.', 2, 2, 2, 19000, 2);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-02-2021' ,'ofer com 3.', 2, 1, 3, 5000, 3);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'ofer com 4.', 1, 2, 4, 95000, 4);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('18-01-2021' ,'Auto je kao NOV! Vredi pogledati. Ovo je oglas broj 6...', 1, 2, 6, 38000, 5);
+insert into offer (date, description, authenticated_user_id, location_id, vehicle_id, price, images_id) values ('15-01-2021' ,'Redovno odrzavan u ovlastenom servisu. Za svaku preporuku.', 1, 1, 5, 35000, 6);

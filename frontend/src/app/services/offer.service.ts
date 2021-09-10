@@ -10,6 +10,7 @@ import { Page } from '../model/page.model';
 const REST_ENDPOINT = {
   GET: '/offers',
   POST: '/offers',
+  PUT: '/offers/',
 };
 
 @Injectable({
@@ -51,5 +52,23 @@ export class OfferService {
     if (image) formData.append('file', image);
 
     return this.http.post<OfferRes>(`${environment.apiUrl}${REST_ENDPOINT.POST}`, formData, {headers: headers});
+  }
+
+  getOne(id: number) {
+    return this.http.get<OfferRes>(`${environment.apiUrl}${REST_ENDPOINT.GET}/` + id);
+  }
+
+  put(offer: OfferReq, id: number, image: string) {
+    const headers = new HttpHeaders({ 'Authorization': "Bearer " + JSON.parse(localStorage.getItem('user')).token });
+    
+    const formData = new FormData();
+
+    formData.append('dto', new Blob([JSON.stringify(offer)], {
+      type: 'application/json'
+    }));
+
+    if (image) formData.append('file', image);
+
+    return this.http.put<OfferRes>(`${environment.apiUrl}${REST_ENDPOINT.PUT}` + id, formData, {headers: headers});
   }
 }

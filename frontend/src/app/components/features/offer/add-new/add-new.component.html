@@ -15,7 +15,7 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Model</mat-label>
                     <mat-select [(value)]="model">
-                        <mat-option *ngFor="let model of models" [value]="model" (click)="chooseVehicles()">
+                        <mat-option *ngFor="let model of models" [value]="model">
                             {{model.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>

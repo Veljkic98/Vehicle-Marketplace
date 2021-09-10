@@ -3,14 +3,14 @@
         <td>
             <div style="padding-top: 2rem;">
                 <div class="box">
-                    <app-offer [offerRes]="row1[i]"></app-offer>
+                    <app-offer [offerRes]="row1[i]" [which]="which"></app-offer>
                 </div>
             </div>
         </td>
         <td>
             <div style="padding-top: 2rem;">
                 <div class="box">
-                    <app-offer [offerRes]="row2[i]"></app-offer>
+                    <app-offer [offerRes]="row2[i]" [which]="which"></app-offer>
                 </div>
             </div>
         </td>
@@ -21,7 +21,7 @@
         <td>
             <div style="padding-top: 2rem;">
                 <div class="box">
-                    <app-offer [offerRes]="row1.slice(-1)[0]"></app-offer>
+                    <app-offer [offerRes]="row1.slice(-1)[0]" [which]="which"></app-offer>
                 </div>
             </div>
         </td>

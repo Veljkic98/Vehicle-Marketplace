@@ -24,6 +24,9 @@ export class OfferComponent implements OnInit {
   @Input()
   offerRes: OfferRes;
 
+  @Input()
+  which: string;
+
   offer: Offer = new Offer();
 
   constructor(

@@ -8,7 +8,6 @@ import { Page } from '../model/page.model';
 const REST_ENDPOINT = {
   GET_ALL: '/makes/by-page',
   GET: '/makes',
-  MAKES_PER_PAGE: 800
 };
 
 @Injectable({

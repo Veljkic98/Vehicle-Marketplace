@@ -76,7 +76,7 @@ export class AddNewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadAllVehicles();
+    // this.loadAllVehicles();
     this.loadAllMakes();
     this.loadAllVehicleTypes();
     this.loadAllFuelTypes();
@@ -106,13 +106,33 @@ export class AddNewComponent implements OnInit {
   }
 
   addedVId: number;
+  errAddV = false;
 
   async add() {
     if (!this.validate()) return;
 
     this.createVehicle();
 
-    var addedVehicle = await this.vehicleService.post(this.vehicle).toPromise();
+    var addedVehicle;
+
+    // await this.vehicleService.post(this.vehicle).toPromise().then(
+    //   res => {
+    //     addedVehicle = res
+    //   }, err => {
+    //     console.log("Greska")
+    //     console.log(err)
+    //     if (err.status == 0) this.openSnackBar('You are offline! Go online and then add new offer.');
+    //     this.errAddV = true;
+    //   }
+    // );
+    try {
+      addedVehicle = await this.vehicleService.post(this.vehicle).toPromise();
+    } catch (error) {
+      this.errAddV = true;
+      this.openSnackBar('You are offline! Go online and then add new offer.');
+    }
+
+    if (this.errAddV == true) return;
 
     var offerReq: OfferReq = new OfferReq(
       {
@@ -130,7 +150,7 @@ export class AddNewComponent implements OnInit {
       () => {
         this.openSnackBar('You successfuly added new offer.');
       }, err => {
-        if (err.status == 504) this.openSnackBar('You are offline! Go online and then delete offer.');
+        if (err.status == 504) this.openSnackBar('You are offline! Go online and then add new offer.');
         else this.openSnackBar('There is problem adding new offer.');
       }
     );
