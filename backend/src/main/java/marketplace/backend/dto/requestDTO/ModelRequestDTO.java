@@ -8,31 +8,23 @@ public class ModelRequestDTO {
     @NotBlank(message = "Model name cannot be blank.")
     private String name;
 
-    @NotNull(message = "Vehicle type id cannot be null.")
-    private Long vehicleTypeId;
-
-    @NotNull(message = "Vehicle type id cannot be null.")
-    private Long fuelTypeId;
+    @NotNull(message = "Vehicle make id cannot be null.")
+    private Long makeId;
 
     public ModelRequestDTO() {
     }
 
-    public ModelRequestDTO(String name, Long vehicleTypeId, Long fuelTypeId) {
+    public ModelRequestDTO(String name, Long makeId) {
         this.name = name;
-        this.vehicleTypeId = vehicleTypeId;
-        this.fuelTypeId = fuelTypeId;
+        this.makeId = makeId;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public Long getVehicleTypeId() {
-        return this.vehicleTypeId;
+    public Long getMakeId() {
+        return this.makeId;
     }
 
-    public Long getFuelTypeId() {
-        return this.fuelTypeId;
-    }
-    
 }

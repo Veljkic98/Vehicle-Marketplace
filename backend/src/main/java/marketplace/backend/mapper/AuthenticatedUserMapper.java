@@ -17,14 +17,14 @@ public class AuthenticatedUserMapper
     public AuthenticatedUser toEntity(AuthenticatedUserRequestDTO dto) {
 
         return new AuthenticatedUser(dto.getFirstName(), dto.getLastName(), dto.getEmail(), dto.getPassword(),
-                dto.getCompanyName(), null);
+                dto.getCompanyName(), null, dto.getPhoneNumber());
     }
 
     @Override
     public AuthenticatedUserResponseDTO toDto(AuthenticatedUser entity) {
 
         return new AuthenticatedUserResponseDTO(entity.getId(), entity.getFirstName(), entity.getLastName(),
-                entity.getEmail(), entity.getCompanyName());
+                entity.getEmail(), entity.getCompanyName(), entity.getPhoneNumber());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,21 @@ public class VehicleTypeController {
     @Autowired
     private VehicleTypeMapper mapper;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
 
         VehicleType type = vehicleTypeService.findById(id);
 
         return new ResponseEntity<>(mapper.toDto(type), HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findAll() {
+
+        List<VehicleType> types = vehicleTypeService.findAll();
+
+        return new ResponseEntity<>(mapper.toDtoList(types), HttpStatus.OK);
     }
 
     @PostMapping

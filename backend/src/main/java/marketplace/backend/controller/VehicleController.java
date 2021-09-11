@@ -1,5 +1,7 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,14 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.findById(id);
 
         return new ResponseEntity<>(mapper.toDto(vehicle), HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findAll() {
+
+        List<Vehicle> vehicles = vehicleService.findAll();
+
+        return new ResponseEntity<>(mapper.toDtoList(vehicles), HttpStatus.OK);
     }
 
     @PostMapping

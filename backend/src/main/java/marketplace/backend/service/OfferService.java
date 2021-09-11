@@ -86,7 +86,7 @@ public class OfferService implements MyService<Offer> {
         if (authenticatedUserRepository.findById(userId).orElse(null) == null)
             throw new MyEntityNotFoundException("User", userId);
 
-        Page<Offer> page = offerRepository.findByAuthenticatedUserId(userId, pageable);
+        Page<Offer> page = offerRepository.findAllByAuthenticatedUserId(userId, pageable);
 
         return page;
     }

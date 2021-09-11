@@ -72,7 +72,7 @@ public class OfferController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    // @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> add(@RequestPart("file") MultipartFile file,
             @Valid @RequestPart("dto") OfferRequestDTO dto) {
 
@@ -82,7 +82,7 @@ public class OfferController {
     }
 
     @PutMapping(path = "/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    // @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestPart("file") MultipartFile file,
             @Valid @RequestPart("dto") OfferRequestDTO dto) {
 

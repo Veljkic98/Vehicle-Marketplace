@@ -1,5 +1,7 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,14 @@ public class ModelController {
         return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
     }
 
+    @GetMapping(path = "by-make/{makeId}")
+    public ResponseEntity<?> getAllByMakeId(@PathVariable Long makeId) {
+
+        List<Model> models = modelService.findAllByMakeId(makeId);
+
+        return new ResponseEntity<>(mapper.toDtoList(models), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> add(@Valid @RequestBody ModelRequestDTO dto) {
 
@@ -45,16 +54,16 @@ public class ModelController {
         return new ResponseEntity<>(mapper.toDto(model), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ModelRequestDTO dto) {
+    // @PutMapping(path = "/{id}")
+    // public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ModelRequestDTO dto) {
 
-        Model model = mapper.toEntity(dto);
-        model.setId(id);
+    //     Model model = mapper.toEntity(dto);
+    //     model.setId(id);
         
-        modelService.update(model);
+    //     modelService.update(model);
 
-        return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
-    }
+    //     return new ResponseEntity<>(mapper.toDto(model), HttpStatus.OK);
+    // }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {

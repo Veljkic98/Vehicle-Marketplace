@@ -1,0 +1,117 @@
+<div class="box">
+    <table>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Make</mat-label>
+                    <mat-select [(value)]="make" disabled>
+                        <mat-option>None</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Model</mat-label>
+                    <mat-select [(value)]="model" disabled>
+                        <mat-option *ngFor="let model of models" [value]="model" (click)="chooseVehicles()">
+                            {{model.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>€ Price</mat-label>
+                    <input matInput type="number" [(ngModel)]="price">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Location</mat-label>
+                    <mat-select [(value)]="locationId" [(ngModel)]="locationId">
+                        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.city}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Vehicle type</mat-label>
+                    <mat-select [(value)]="vehicleType" disabled>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of vehicleTypes" [value]="type">{{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Fuel type</mat-label>
+                    <mat-select [(value)]="fuelType" disabled>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of fuelTypes" [value]="type">{{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Kilometer</mat-label>
+                    <input matInput type="number" [(ngModel)]="km" min="0" disabled>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>1st registration</mat-label>
+                    <mat-select [(value)]="firstReg" disabled>
+                        <mat-option *ngFor="let reg of regs" [value]="reg">{{reg}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput [(ngModel)]="description"></textarea>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>CC</mat-label>
+                    <input matInput type="number" [(ngModel)]="cc" min="0" disabled>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>HP</mat-label>
+                    <input matInput type="number" [(ngModel)]="hp" min="0" disabled>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input id="ch-file-input" type='file' (change)="onSelectFile($event)">
+                        </div>
+                    </form>
+                </div>
+            </td>
+            <!-- <td></td> -->
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Number of dors</mat-label>
+                    <input matInput type="number" [(ngModel)]="numberOfDors" min="1" max="5"  disabled>
+                </mat-form-field>
+            </td>
+            <td style="text-align: right;">
+                <button mat-raised-button (click)="edit()" style="width : 8em; height: 3em;">Update</button>
+            </td>
+        </tr>
+    </table>
+</div>

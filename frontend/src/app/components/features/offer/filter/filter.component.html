@@ -1,0 +1,128 @@
+<div class="box">
+    <!-- <p>sort works!</p>
+    <mat-label>neki input</mat-label>
+    <input matInput [(ngModel)]="val">
+    <button (click)="send()">send</button>
+    <h4>mat-select</h4> -->
+    
+    <table>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Make</mat-label>
+                    <mat-select [(value)]="make">
+                        <mat-option (click)="clearModels()">None</mat-option>
+                        <mat-option *ngFor="let make of makes" [value]="make" (click)="loadModels()">{{make.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Model</mat-label>
+                    <mat-select [(value)]="model">
+                        <mat-option>All</mat-option>
+                        <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>€ Price from</mat-label>
+                    <input matInput type="number" [(ngModel)]="priceFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>€ Price from</mat-label>
+                    <input matInput type="number" [(ngModel)]="priceTo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>1st registration from</mat-label>
+                    <mat-select [(value)]="firstRegFrom">
+                        <mat-option *ngFor="let regFrom of regs" [value]="regFrom">{{regFrom}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>1st registration to</mat-label>
+                    <mat-select [(value)]="firstRegTo">
+                        <mat-option *ngFor="let regTo of regs" [value]="regTo">{{regTo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>KM from</mat-label>
+                    <input matInput type="number" [(ngModel)]="kmFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>KM to</mat-label>
+                    <input matInput type="number" [(ngModel)]="kmTo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>CC from</mat-label>
+                    <input matInput type="number" [(ngModel)]="ccFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>CC to</mat-label>
+                    <input matInput type="number" [(ngModel)]="ccTo">
+                </mat-form-field>
+            </td>
+
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>HP from</mat-label>
+                    <input matInput type="number" [(ngModel)]="hpFrom">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>HP to</mat-label>
+                    <input matInput type="number" [(ngModel)]="hpTo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Vehicle type</mat-label>
+                    <mat-select [(value)]="vehicleType">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of vehicleTypes" [value]="type">{{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Fuel type</mat-label>
+                    <mat-select [(value)]="fuelType">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let type of fuelTypes" [value]="type">{{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td></td>
+            <td style="text-align: right;">
+                <button mat-raised-button (click)="send()" style="width : 8em; height: 3em;">Search</button>
+            </td>
+        </tr>
+
+    </table>
+</div>

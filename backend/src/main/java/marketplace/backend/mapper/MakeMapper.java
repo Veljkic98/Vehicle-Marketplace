@@ -3,12 +3,13 @@ package marketplace.backend.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import marketplace.backend.dto.requestDTO.MakeRequestDTO;
 import marketplace.backend.dto.responseDTO.MakeResponseDTO;
 import marketplace.backend.model.Make;
-import marketplace.backend.model.Model;
 
 @Service
 public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDTO> {
@@ -16,16 +17,13 @@ public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDT
     @Override
     public Make toEntity(MakeRequestDTO dto) {
         
-        Model model = new Model();
-        model.setId(dto.getModelId());
-
-        return new Make(dto.getName(), model);
+        return new Make(dto.getName());
     }
 
     @Override
     public MakeResponseDTO toDto(Make entity) {
         
-        return new MakeResponseDTO(entity.getId(), entity.getName(), entity.getModel().getId());
+        return new MakeResponseDTO(entity.getId(), entity.getName());
     }
 
     @Override
@@ -37,6 +35,22 @@ public class MakeMapper implements MyMapper<Make, MakeResponseDTO, MakeRequestDT
             responseDTOs.add(toDto(make));
 
         return responseDTOs;
+    }
+
+    /**
+     * Convert Page of Make to Page of Make Response DTO.
+     * 
+     * @param entityPage is Make page
+     * @return Make response page
+     */
+    public Object toDtoPage(Page<Make> entityPage) {
+        
+        List<MakeResponseDTO> DTOs = toDtoList(entityPage.toList());
+
+        Page<MakeResponseDTO> pageResponse = new PageImpl<>(DTOs, entityPage.getPageable(),
+                entityPage.getTotalElements());
+
+        return pageResponse;
     }
     
 }

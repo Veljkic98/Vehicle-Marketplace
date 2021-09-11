@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<JWT> {
-    const token = JSON.parse(localStorage.getItem('user-admin')).refreshToken
+    const token = JSON.parse(localStorage.getItem('user')).refreshToken
     const header = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + token });
 
     return this.http.post<JWT>("http://localhost:8080/api/auth/refresh", token, { headers: header });
@@ -32,18 +32,18 @@ export class AuthService {
           this.saveToken(data["accessToken"], data["accessTokenRefresh"]);
           window.location.reload();
         }, error => {
-          localStorage.removeItem('user-admin');
+          localStorage.removeItem('user');
           this.router.navigate(['/login']);
         }
       )
   }
 
   saveToken(token: String, refreshToken: string) {
-    var localobj = JSON.parse(localStorage.getItem('user-admin'));
+    var localobj = JSON.parse(localStorage.getItem('user'));
 
-    localStorage.removeItem('user-admin');
+    localStorage.removeItem('user');
 
-    localStorage.setItem('user-admin', JSON.stringify({
+    localStorage.setItem('user', JSON.stringify({
       username: localobj.username,
       token: token,
       refreshToken: refreshToken,
@@ -53,23 +53,22 @@ export class AuthService {
   }
 
   logOut(): void {
-    localStorage.removeItem('user-admin');
-    localStorage.removeItem('user-admin-hospital');
+    localStorage.removeItem('user');
   }
 
   getId(): number {
-    return localStorage.getItem('user-admin') ? JSON.parse(localStorage.getItem('user-admin')).id : 'INVALID';
+    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).id : 'INVALID';
   }
 
   getRole(): string {
-    return localStorage.getItem('user-admin') ? JSON.parse(localStorage.getItem('user-admin')).role : 'INVALID';
+    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).role : 'INVALID';
   }
 
   getRefreshToken(): string {
-    return localStorage.getItem('user-admin') ? JSON.parse(localStorage.getItem('user-admin')).refreshToken : 'INVALID';
+    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).refreshToken : 'INVALID';
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('user-admin') !== null;
+    return localStorage.getItem('user') !== null;
   }
 }

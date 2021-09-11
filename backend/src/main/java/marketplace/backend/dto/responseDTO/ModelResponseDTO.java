@@ -6,15 +6,12 @@ public class ModelResponseDTO {
 
     private String name;
 
-    private Long vehicleTypeId;
+    private Long makeId;
 
-    private Long fuelTypeId;
-
-    public ModelResponseDTO(Long id, String name, Long vehicleTypeId, Long fuelTypeId) {
+    public ModelResponseDTO(Long id, String name, Long makeId) {
         this.id = id;
         this.name = name;
-        this.vehicleTypeId = vehicleTypeId;
-        this.fuelTypeId = fuelTypeId;
+        this.makeId = makeId;
     }
 
     public Long getId() {
@@ -33,20 +30,12 @@ public class ModelResponseDTO {
         this.name = name;
     }
 
-    public Long getVehicleTypeId() {
-        return this.vehicleTypeId;
+    public Long getMakeId() {
+        return this.makeId;
     }
 
-    public void setVehicleTypeId(Long vehicleTypeId) {
-        this.vehicleTypeId = vehicleTypeId;
+    public void setMakeId(Long makeId) {
+        this.makeId = makeId;
     }
 
-    public Long getFuelTypeId() {
-        return this.fuelTypeId;
-    }
-
-    public void setFuelTypeId(Long fuelTypeId) {
-        this.fuelTypeId = fuelTypeId;
-    }
-    
 }

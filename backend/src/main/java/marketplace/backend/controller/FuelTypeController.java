@@ -1,5 +1,7 @@
 package marketplace.backend.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,14 @@ public class FuelTypeController {
         FuelType type = fuelTypeService.findById(id);
 
         return new ResponseEntity<>(mapper.toDto(type), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findAll() {
+
+        List<FuelType> types = fuelTypeService.findAll();
+
+        return new ResponseEntity<>(mapper.toDtoList(types), HttpStatus.OK);
     }
 
     @PostMapping

@@ -32,29 +32,39 @@ public class Vehicle {
     private int numberOfDoors;
 
     @ManyToOne
-    private Make make;
+    private Model model;
+
+    @ManyToOne
+    private VehicleType vehicleType;
+
+    @ManyToOne
+    private FuelType fuelType;
 
     public Vehicle() {
     }
 
-    public Vehicle(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Make make) {
+    public Vehicle(Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors, Model model, VehicleType vehicleType, FuelType fuelType) {
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.make = make;
+        this.model = model;
+        this.vehicleType = vehicleType;
+        this.fuelType = fuelType;
     }
 
     public Vehicle(Long id, Date firstRegistration, int kilometer, int power, int cubicCapacity, int numberOfDoors,
-            Make make) {
+        Model model, VehicleType vehicleType, FuelType fuelType) {
         this.id = id;
         this.firstRegistration = firstRegistration;
         this.kilometer = kilometer;
         this.power = power;
         this.cubicCapacity = cubicCapacity;
         this.numberOfDoors = numberOfDoors;
-        this.make = make;
+        this.model = model;
+        this.vehicleType = vehicleType;
+        this.fuelType = fuelType;
     }
 
     public Long getId() {
@@ -105,12 +115,28 @@ public class Vehicle {
         this.numberOfDoors = numberOfDoors;
     }
 
-    public Make getMake() {
-        return this.make;
+    public Model getModel() {
+        return this.model;
     }
 
-    public void setMake(Make make) {
-        this.make = make;
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public VehicleType getVehicleType() {
+        return this.vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public FuelType getFuelType() {
+        return this.fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
     }
 
     @Override
